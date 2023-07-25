@@ -3,6 +3,7 @@
   <router-link to="/main">首页</router-link>
   <h2>{{ name }}</h2>
   <router-view></router-view>
+  <el-button type="success">按钮</el-button>
 </template>
 
 <script lang="ts" setup>
