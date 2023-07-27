@@ -7,6 +7,8 @@ import store from '@/store'
 // 不管是全局导入还是局部导入，都要引入样式
 import 'element-plus/dist/index.css'
 
+import '@/service/axio_demo'
+
 const app = createApp(App)
 app.use(router)
 app.use(store)
