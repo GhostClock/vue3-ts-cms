@@ -1,5 +1,6 @@
 let BASE_URL = ''
 let BASE_NAME = ''
+const TIME_OUT = 10000
 
 // 配置环境方式一：
 // 根据process.env.NODE_ENV来区分环境
@@ -8,7 +9,7 @@ let BASE_NAME = ''
 // 测试环境: test
 if (process.env.NODE_ENV === 'development') {
   // 开发环境
-  BASE_URL = '/develop'
+  BASE_URL = 'http://123.207.32.32:8000/'
   BASE_NAME = '开发环境'
 } else if (process.env.NODE_ENV === 'production') {
   // 生产环境
@@ -20,4 +21,4 @@ if (process.env.NODE_ENV === 'development') {
   BASE_NAME = '测试环境'
 }
 
-export { BASE_URL, BASE_NAME }
+export { BASE_URL, BASE_NAME, TIME_OUT }

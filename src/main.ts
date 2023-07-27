@@ -7,7 +7,8 @@ import store from '@/store'
 // 不管是全局导入还是局部导入，都要引入样式
 import 'element-plus/dist/index.css'
 
-import '@/service/axio_demo'
+// import '@/service/axio_demo'
+import Request from './service'
 
 const app = createApp(App)
 app.use(router)
@@ -17,3 +18,8 @@ app.mount('#app')
 
 console.log(process.env.VUE_APP_BASE_URL)
 console.log(process.env.VUE_APP_BASE_NAME)
+
+Request.request({
+  url: '/home/multidata',
+  method: 'get'
+})
