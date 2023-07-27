@@ -21,5 +21,15 @@ console.log(process.env.VUE_APP_BASE_NAME)
 
 Request.request({
   url: '/home/multidata',
-  method: 'get'
+  method: 'get',
+  interceptors: {
+    requestInterceptor: (config) => {
+      console.log('请求拦截器：请求成功拦截')
+      return config
+    },
+    responseInterceptor: (config) => {
+      console.log('请求拦截器：响应成功拦截')
+      return config
+    }
+  }
 })

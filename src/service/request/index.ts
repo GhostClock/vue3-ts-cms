@@ -1,5 +1,5 @@
 import axios from 'axios'
-import type { AxiosInstance } from 'axios'
+import type { AxiosInstance, InternalAxiosRequestConfig } from 'axios'
 import type { GCInterceptors, GCRequestConfig } from './types'
 
 class GCRequest {
@@ -31,21 +31,29 @@ class GCRequest {
         console.log('全局拦截器: 请求失败拦截器')
         return err
       }
-    ),
-      this.instance.interceptors.response.use(
-        (config) => {
-          console.log('全局拦截器: 响应成功拦截器')
-          return config
-        },
-        (error) => {
-          console.log('全局拦截器: 响应失败拦截器')
-          return error
-        }
-      )
+    )
+    this.instance.interceptors.response.use(
+      (config) => {
+        console.log('全局拦截器: 响应成功拦截器')
+        return config
+      },
+      (error) => {
+        console.log('全局拦截器: 响应失败拦截器')
+        return error
+      }
+    )
   }
 
   request(config: GCRequestConfig) {
+    if (config.interceptors?.requestInterceptor) {
+      config = config.interceptors.requestInterceptor(
+        config as InternalAxiosRequestConfig // 强制类型转换，把父类型转为子类型
+      )
+    }
     this.instance.request(config).then((response) => {
+      if (config.interceptors?.responseInterceptor) {
+        response = config.interceptors.responseInterceptor(response)
+      }
       console.log(response.data)
     })
   }
