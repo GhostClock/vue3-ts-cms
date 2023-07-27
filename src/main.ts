@@ -14,3 +14,6 @@ app.use(router)
 app.use(store)
 // registerApp(app)
 app.mount('#app')
+
+console.log(process.env.VUE_APP_BASE_URL)
+console.log(process.env.VUE_APP_BASE_NAME)

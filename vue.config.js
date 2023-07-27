@@ -8,6 +8,7 @@ const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
 module.exports = defineConfig({
   // CLI提供的属性
   outputDir: './build',
+  publicPath: './', // 发布生产环境时需要注释掉
   transpileDependencies: true,
   // 配置方式一：增加配置信息 PS:这里@默认配置里面已经有了
   // configureWebpack: {
