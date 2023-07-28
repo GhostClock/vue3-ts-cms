@@ -7,6 +7,11 @@ const Request = new GCRequest({
   timeout: TIME_OUT,
   interceptors: {
     requestInterceptor: (config) => {
+      // 携带token拦截
+      const token = ''
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`
+      }
       console.log('实例拦截器：请求成功的拦截')
       return config
     },
@@ -16,7 +21,7 @@ const Request = new GCRequest({
     },
     responseInterceptor: (response) => {
       console.log('实例拦截器：响应成功的拦截')
-      return response.data
+      return response
     },
     responseInterceptorCatch: (error) => {
       console.log('实例拦截器：请求失败的拦截', error)

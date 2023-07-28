@@ -24,6 +24,7 @@ class GCRequest {
     // 添加所有实例都有的拦截器 - 全局拦截器
     this.instance.interceptors.request.use(
       (config) => {
+        console.log('当前请求的Url: ', config.url)
         console.log('全局拦截器: 请求成功拦截器')
         return config
       },
@@ -33,12 +34,21 @@ class GCRequest {
       }
     )
     this.instance.interceptors.response.use(
-      (config) => {
+      (response) => {
         console.log('全局拦截器: 响应成功拦截器')
-        return config
+        console.log('响应的数据: ', response.data)
+        const data = response.data
+        if (data === '-1001') {
+          console.log('响应失败')
+          return null
+        }
+        return data // 在全局拦截器里面得到真实的网络数据
       },
       (error) => {
         console.log('全局拦截器: 响应失败拦截器')
+        if (error.response.state === 404) {
+          console.log('404错误')
+        }
         return error
       }
     )
@@ -54,7 +64,8 @@ class GCRequest {
       if (config.interceptors?.responseInterceptor) {
         response = config.interceptors.responseInterceptor(response)
       }
-      console.log(response.data)
+      // 最终得到的数据
+      console.log(response)
     })
   }
 }
