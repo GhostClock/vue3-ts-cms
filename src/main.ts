@@ -31,5 +31,6 @@ Request.request({
       console.log('请求拦截器：响应成功拦截')
       return config
     }
-  }
+  },
+  showLoading: false
 })

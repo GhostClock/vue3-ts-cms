@@ -20,4 +20,5 @@ export interface GCInterceptors {
 
 export interface GCRequestConfig extends AxiosRequestConfig {
   interceptors?: GCInterceptors
+  showLoading?: boolean
 }
