@@ -12,12 +12,14 @@ export interface GCInterceptors {
   // 这个error的类型是any，仅在这一行消除any类型警告
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   requestInterceptorCatch?: (error: any) => any
-
-  responseInterceptor?: (config: AxiosResponse) => AxiosResponse
+  // TODO should fix
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  responseInterceptor?: (config: any) => any
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   responseInterceptorCatch?: (error: any) => any
 }
 
 export interface GCRequestConfig extends AxiosRequestConfig {
   interceptors?: GCInterceptors
+  showLoading?: boolean
 }

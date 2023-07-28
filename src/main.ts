@@ -19,9 +19,13 @@ app.mount('#app')
 console.log(process.env.VUE_APP_BASE_URL)
 console.log(process.env.VUE_APP_BASE_NAME)
 
-Request.request({
+interface DataType {
+  data: unknown // 未知类型
+  returnCode: string
+  success: boolean
+}
+Request.get<DataType>({
   url: '/home/multidata',
-  method: 'get',
   interceptors: {
     requestInterceptor: (config) => {
       console.log('请求拦截器：请求成功拦截')
@@ -31,5 +35,14 @@ Request.request({
       console.log('请求拦截器：响应成功拦截')
       return config
     }
-  }
+  },
+  showLoading: true
 })
+  .then((response) => {
+    console.log(response.data)
+    console.log(response.returnCode)
+    console.log(response.success)
+  })
+  .catch((error) => {
+    console.log(error)
+  })
