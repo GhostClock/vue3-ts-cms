@@ -16,6 +16,7 @@ class GCRequest {
   constructor(config: GCRequestConfig) {
     // 创建axios实例
     this.instance = axios.create(config)
+
     // 保存基本信息
     this.showLoading = config.showLoading ?? DEFAULT_LODING
     this.interceptors = config.interceptors
