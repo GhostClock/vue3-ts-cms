@@ -1,23 +1,46 @@
 {
+  // 编译选项
   "compilerOptions": {
+    // 目标代码 ts -> js es5/6/7
     "target": "esnext",
+    // 目标代码使用的模块化方案
+    // commonjs: require/module.exports/es
+    // module: import/export
+    // umd: 同时支持commonjs和module
     "module": "esnext",
+    // 严格检查 打开状态, 比如是不是可以使用any
     "strict": true,
+    // 要不要多jsx进行怎么样的处理
+    // preserve保留：表示不转化
     "jsx": "preserve",
+    // 辅助的导入功能
+    // "importHelpers": true,
+    // 安装node的方式去解析模式 import "/index"
     "moduleResolution": "node",
+    // 跳过对一些库的类型检测 axios->类型 -> 不检查类型
     "skipLibCheck": true,
+    // esmodule 和 commonjs 时候可以同时使用
+    // export default / module.exports = {}
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+
     "forceConsistentCasingInFileNames": true,
     "useDefineForClassFields": true,
+    // 要不要生成映射文件
     "sourceMap": true,
+    // 文件路径在解析时，基本的url
     "baseUrl": ".",
+    // 指定具体要解析使用的类型
     "types": ["webpack-env"],
+    // 编译阶段的路径解析 类似于webpack中的alias配置项
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "components/*": ["src/components/*"]
     },
+    // 指定在项目中可以使用哪些库的类型(Proxy/Window/Document等)
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
+  // 包含哪些文件需要被解析
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
@@ -25,5 +48,6 @@
     "tests/**/*.ts",
     "tests/**/*.tsx"
   ],
+  // 包含哪些文件不需要解析,但是引用到的库是要解析的
   "exclude": ["node_modules"]
 }
