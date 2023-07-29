@@ -78,7 +78,7 @@ class GCRequest {
     )
   }
 
-  request<T>(config: GCRequestConfig): Promise<T> {
+  request<T>(config: GCRequestConfig<T>): Promise<T> {
     return new Promise((resolve, reject) => {
       // 1、处理实例拦截器请求时对config的处理
       if (config.interceptors?.requestInterceptor) {
@@ -97,7 +97,6 @@ class GCRequest {
         .then((response) => {
           // 1、请求拦截器对数据的处理
           if (config.interceptors?.responseInterceptor) {
-            // TODO should fix
             response = config.interceptors.responseInterceptor(response)
           }
           // 最终得到的数据
@@ -116,19 +115,19 @@ class GCRequest {
     })
   }
 
-  get<T>(config: GCRequestConfig): Promise<T> {
+  get<T>(config: GCRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'GET' })
   }
 
-  post<T>(config: GCRequestConfig): Promise<T> {
+  post<T>(config: GCRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'POST' })
   }
 
-  delete<T>(config: GCRequestConfig): Promise<T> {
+  delete<T>(config: GCRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'DELETE' })
   }
 
-  patch<T>(config: GCRequestConfig): Promise<T> {
+  patch<T>(config: GCRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'PATCH' })
   }
 }
