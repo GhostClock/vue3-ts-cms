@@ -34,6 +34,9 @@ module.exports = defineConfig({
       .set('components', '@/components')
   },
   configureWebpack: {
+    devServer: {
+      hot: true
+    },
     plugins: [
       AutoImport({
         resolvers: [ElementPlusResolver()]
