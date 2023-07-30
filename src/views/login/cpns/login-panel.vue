@@ -9,7 +9,7 @@
             <span>帐号登录</span>
           </span>
         </template>
-        <LoginAccount />
+        <LoginAccount ref="accountRef" />
       </el-tab-pane>
 
       <el-tab-pane>
@@ -41,9 +41,11 @@ import LoginAccount from './login-account.vue'
 import LoginPhone from './login-phone.vue'
 
 const isKeepPwd = ref(true)
+// InstanceType<typeof LoginAccount>： 获取组件实例类型
+const accountRef = ref<InstanceType<typeof LoginAccount>>()
 
 const handleLoginClick = () => {
-  console.log('立即登录')
+  accountRef.value?.loginAction()
 }
 </script>
 
