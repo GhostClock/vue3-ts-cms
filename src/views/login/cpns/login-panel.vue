@@ -22,13 +22,29 @@
         <LoginPhone />
       </el-tab-pane>
     </el-tabs>
+
+    <div class="account-control">
+      <el-checkbox v-model="isKeepPwd" label="记住密码" />
+      <el-link type="primary">忘记密码</el-link>
+    </div>
+
+    <el-button type="primary" class="login-btn" @click="handleLoginClick"
+      >立即登录</el-button
+    >
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import { User, Cellphone } from '@element-plus/icons-vue'
 import LoginAccount from './login-account.vue'
 import LoginPhone from './login-phone.vue'
+
+const isKeepPwd = ref(true)
+
+const handleLoginClick = () => {
+  console.log('立即登录')
+}
 </script>
 
 <style lang="less" scoped>
@@ -38,11 +54,13 @@ import LoginPhone from './login-phone.vue'
     text-align: center;
   }
 }
-.tabs .custom-tabs-label .el-icon {
-  vertical-align: middle;
+
+.account-control {
+  display: flex;
+  justify-content: space-between;
 }
-.tabs .custom-tabs-label span {
-  vertical-align: middle;
-  margin-left: 4px;
+
+.login-btn {
+  width: 100%;
 }
 </style>
