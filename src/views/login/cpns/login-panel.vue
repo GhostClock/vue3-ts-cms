@@ -20,7 +20,6 @@
           </span>
         </template>
         <LoginPhone />
-        手机登录
       </el-tab-pane>
     </el-tabs>
   </div>
