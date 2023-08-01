@@ -45,7 +45,7 @@ const isKeepPwd = ref(true)
 const accountRef = ref<InstanceType<typeof LoginAccount>>()
 
 const handleLoginClick = () => {
-  accountRef.value?.loginAction()
+  accountRef.value?.loginAction(isKeepPwd.value)
 }
 </script>
 

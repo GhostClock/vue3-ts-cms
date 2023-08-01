@@ -7,7 +7,7 @@
       <el-form-item label="密码" prop="password">
         <el-input
           v-model="account.password"
-          type="password"
+          show-password
           placeholder="请输入密码"
         ></el-input>
       </el-form-item>
@@ -19,20 +19,31 @@
 import { reactive, ref } from 'vue'
 import { rules } from '../config/account-config'
 import type { ElForm } from 'element-plus'
+import LocalCache from '@/utils/cache'
 
 const account = reactive({
-  name: '',
-  password: ''
+  name: LocalCache.getCache('name') ?? '',
+  password: LocalCache.getCache('password') ?? ''
 })
 
 const formRef = ref<InstanceType<typeof ElForm>>()
 
-const loginAction = () => {
+const loginAction = (isKeepPwd: boolean) => {
   // 获取表单是否校验通过
   formRef.value?.validate((valid) => {
     console.log(valid ? '表单校验成功' : '表单校验失败')
     if (valid) {
       console.log('开始执行登录逻辑')
+      // 1、判断是否需要记住密码
+      if (isKeepPwd) {
+        // 本地缓存
+        LocalCache.setCache('name', account.name)
+        LocalCache.setCache('password', account.password)
+      } else {
+        LocalCache.deleteCache('name')
+        LocalCache.deleteCache('password')
+      }
+      // 2、开始进行登录验证
     }
   })
 }
