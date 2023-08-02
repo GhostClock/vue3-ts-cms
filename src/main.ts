@@ -1,9 +1,8 @@
 import { createApp } from 'vue'
+
 import App from './App.vue'
 
-import router from '@/router'
-import store from '@/store'
-// import { registerApp } from '@/global'
+import { registerApp } from '@/global'
 // 不管是全局导入还是局部导入，都要引入样式
 import 'element-plus/dist/index.css'
 
@@ -15,9 +14,7 @@ import '@/assets/css/index.less'
 import Request from './service'
 
 const app = createApp(App)
-app.use(router)
-app.use(store)
-// registerApp(app)
+registerApp(app)
 app.mount('#app')
 
 console.log(process.env.VUE_APP_BASE_URL)
