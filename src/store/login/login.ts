@@ -9,8 +9,11 @@ export const useLoginStore = defineStore('login', {
     }
   },
   actions: {
-    accountLoginAction(payload: any) {
+    accountLoginAction(payload: object) {
       console.log('执行accountLoginAction', payload)
+    },
+    phoneLoginAction(payload: object) {
+      console.log('执行phoneLoginAction', payload)
     }
   },
   getters: {}

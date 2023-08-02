@@ -7,7 +7,7 @@ export const rules = {
       trigger: 'blur'
     },
     {
-      pattern: /^[0-9]{,11}$/,
+      pattern: /^[0-9]{11}$/,
       message: '手机号必须为11位数字',
       trigger: 'blur'
     }
@@ -19,7 +19,7 @@ export const rules = {
       trigger: 'blur'
     },
     {
-      pattern: /^[0-9]{,6}$/,
+      pattern: /^[0-9]{6}$/,
       message: '验证码必须为6位数组',
       trigger: 'blur'
     }

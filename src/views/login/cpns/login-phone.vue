@@ -17,9 +17,27 @@
 <script lang="ts" setup>
 import { reactive } from 'vue'
 import { rules } from '../config/phone-config'
+import LocalCache from '@/utils/cache'
+import { useLoginStore } from '@/store/login/login'
 const phone = reactive({
-  number: '',
+  number: LocalCache.getCache('phone') ?? '',
   code: ''
+})
+const loginStore = useLoginStore()
+
+const loginAction = (isKeepPwd: boolean) => {
+  // 1、判断是否保存帐号
+  if (isKeepPwd) {
+    LocalCache.setCache('phone', phone.number)
+  } else {
+    LocalCache.deleteCache('phone')
+  }
+  // 2、开始执行登录逻辑
+  loginStore.phoneLoginAction({ ...phone })
+}
+
+defineExpose({
+  loginAction
 })
 </script>
 

@@ -20,6 +20,9 @@ import { reactive, ref } from 'vue'
 import { rules } from '../config/account-config'
 import type { ElForm } from 'element-plus'
 import LocalCache from '@/utils/cache'
+import { useLoginStore } from '@/store/login/login'
+
+const loginStore = useLoginStore()
 
 const account = reactive({
   name: LocalCache.getCache('name') ?? '',
@@ -44,13 +47,12 @@ const loginAction = (isKeepPwd: boolean) => {
         LocalCache.deleteCache('password')
       }
       // 2、开始进行登录验证
+      loginStore.accountLoginAction({ ...account })
     }
   })
 }
 
 // 把子组件的方法暴露出去 defineExpose是一个编译宏
-// 解决eslint版本问题一起的警告
-// eslint-disable-next-line no-undef
 defineExpose({
   loginAction
 })
