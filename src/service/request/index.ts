@@ -45,17 +45,14 @@ class GCRequest {
         }
 
         console.log('当前请求的Url: ', config.url)
-        console.log('全局拦截器: 请求成功拦截器')
         return config
       },
       (err) => {
-        console.log('全局拦截器: 请求失败拦截器')
         return err
       }
     )
     this.instance.interceptors.response.use(
       (response) => {
-        console.log('全局拦截器: 响应成功拦截器')
         console.log('响应的数据: ', response.data)
         const data = response.data
         if (data === '-1001') {
@@ -67,7 +64,6 @@ class GCRequest {
         return data // 在全局拦截器里面得到真实的网络数据
       },
       (error) => {
-        console.log('全局拦截器: 响应失败拦截器')
         if (error.response.state === 404) {
           console.log('404错误')
         }
