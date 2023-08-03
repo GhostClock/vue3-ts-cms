@@ -1,5 +1,6 @@
+import { IUserInfoResult, IUserMenus } from '@/service/login/types'
 export interface ILoginState {
   token: string
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  userInfo: any
+  userInfo: IUserInfoResult
+  userMenus: [IUserMenus]
 }
