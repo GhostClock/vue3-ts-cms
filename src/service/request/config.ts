@@ -9,7 +9,7 @@ const TIME_OUT = 10000
 // 测试环境: test
 if (process.env.NODE_ENV === 'development') {
   // 开发环境
-  BASE_URL = 'http://123.207.32.32:8000/'
+  BASE_URL = '/' //'http://123.207.32.32:8000/'
   BASE_NAME = '开发环境'
 } else if (process.env.NODE_ENV === 'production') {
   // 生产环境

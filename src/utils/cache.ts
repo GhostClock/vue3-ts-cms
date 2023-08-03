@@ -1,5 +1,4 @@
 class LocalCache {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setCache(key: string, value: any) {
     localStorage.setItem(key, JSON.stringify(value))
   }

@@ -35,7 +35,16 @@ module.exports = defineConfig({
   },
   configureWebpack: {
     devServer: {
-      hot: true
+      hot: true,
+      proxy: {
+        '^/': {
+          target: 'https://httpbingo.org/', //'http://123.207.32.32:8000/',
+          pathRewrite: {
+            '^/': ''
+          },
+          changeOrigin: true
+        }
+      }
     },
     plugins: [
       AutoImport({
