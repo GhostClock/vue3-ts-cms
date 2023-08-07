@@ -3,7 +3,9 @@ import { IRootState } from './types'
 
 export const useRootStore = defineStore('root', {
   state: (): IRootState => {
-    return {}
+    return {
+      id: 0
+    }
   },
   actions: {},
   getters: {}

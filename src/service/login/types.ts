@@ -52,4 +52,17 @@ export interface IUserMenus {
   url: string
   icon: string
   sort: number
+  children: [IUserSubMenus]
+}
+
+// 二级菜单信息
+export interface IUserSubMenus {
+  id: number
+  name: string
+  parentId: number
+  type: number
+  url: string
+  sort: number
+  icon: string
+  children: [IUserSubMenus]
 }

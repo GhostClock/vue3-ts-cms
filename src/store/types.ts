@@ -1,1 +1,3 @@
-export interface IRootState {}
+export interface IRootState {
+  id: number
+}

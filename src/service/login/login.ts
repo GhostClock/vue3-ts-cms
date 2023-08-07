@@ -76,32 +76,121 @@ export function requestUserMenusByRoleId(roleId: number) {
           name: '系统总揽',
           type: 1,
           url: '/main/analysis',
-          icon: 'el-icon-monior',
-          sort: 1
+          icon: 'Monitor',
+          sort: 1,
+          children: [
+            {
+              id: 39,
+              name: '核心技术',
+              parentId: 38,
+              type: 2,
+              sort: 2,
+              url: '/main/analysis/overview',
+              children: null
+            }
+          ]
         },
         {
           id: 1,
           name: '系统管理',
           type: 1,
           url: '/main/system',
-          icon: 'el-icon-setting',
-          sort: 2
+          icon: 'Setting',
+          sort: 2,
+          children: [
+            {
+              id: 39,
+              name: '用户管理',
+              parentId: 38,
+              type: 2,
+              sort: 2,
+              url: '/main/analysis/overview',
+              children: null
+            },
+            {
+              id: 39,
+              name: '部门管理',
+              parentId: 38,
+              type: 2,
+              sort: 2,
+              url: '/main/analysis/overview',
+              children: null
+            },
+            {
+              id: 39,
+              name: '菜单管理',
+              parentId: 38,
+              type: 2,
+              sort: 2,
+              url: '/main/analysis/overview',
+              children: null
+            },
+            {
+              id: 39,
+              name: '角色管理',
+              parentId: 38,
+              type: 2,
+              sort: 2,
+              url: '/main/analysis/overview',
+              children: null
+            }
+          ]
         },
         {
           id: 9,
           name: '商品中心',
           type: 1,
           url: '/main/product',
-          icon: 'el-icon-goods',
-          sort: 3
+          icon: 'Goods',
+          sort: 3,
+          children: [
+            {
+              id: 39,
+              name: '商品类别',
+              parentId: 38,
+              type: 2,
+              sort: 2,
+              url: '/main/analysis/overview',
+              children: null
+            },
+            {
+              id: 39,
+              name: '商品信息',
+              parentId: 38,
+              type: 2,
+              sort: 2,
+              url: '/main/analysis/overview',
+              children: null
+            }
+          ]
         },
         {
           id: 41,
           name: '随便聊聊',
           type: 1,
           url: '/main/story',
-          icon: 'el-icon-chat-line-round',
-          sort: 4
+          icon: 'ChatDotRound',
+          sort: 4,
+          children: [
+            {
+              id: 39,
+              name: '你的故事',
+              parentId: 38,
+              type: 2,
+              sort: 2,
+              url: '/main/analysis/overview',
+              children: null
+            },
+            {
+              id: 39,
+              name: '故事列表',
+              parentId: 38,
+              type: 2,
+              sort: 2,
+              url: '/main/analysis/overview',
+              children: null
+            }
+          ]
         }
       ]
     },
