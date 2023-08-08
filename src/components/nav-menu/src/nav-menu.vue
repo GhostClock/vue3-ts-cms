@@ -2,7 +2,7 @@
   <div class="nav-menu">
     <div class="logo">
       <img class="img" src="~@/assets/img/logo.svg" alt="logo" />
-      <span class="title">Vue3+TS</span>
+      <span v-if="!collapse" class="title">Vue3+TS</span>
     </div>
     <el-menu
       v-for="(menuItem, itemIndex) in loginStore.userMenus"
@@ -12,6 +12,8 @@
       active-color="red"
       text-color="#b7bdc3"
       background-color="#0c2135"
+      :collapse="collapse"
+      :collapse-transition="true"
       @open="handleOpen"
       @close="handleClose"
     >
@@ -33,9 +35,14 @@
 </template>
 
 <script setup lang="ts">
+import { toRefs } from 'vue'
 import { Location } from '@element-plus/icons-vue'
 import { useLoginStore } from '@/store/login/login'
+
+const props = defineProps({ collapse: Boolean })
 const loginStore = useLoginStore()
+
+const { collapse } = toRefs(props)
 
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
@@ -71,5 +78,8 @@ const handleClose = (key: string, keyPath: string[]) => {
 :deep(.is-active) {
   background: #0261bf;
   color: white;
+}
+.el-menu {
+  border-right: none;
 }
 </style>
