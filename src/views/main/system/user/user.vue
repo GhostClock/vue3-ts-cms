@@ -1,16 +1,13 @@
 <template>
   <div class="user">
-    <h2>user</h2>
-    <ul>
-      <li>用户列表1</li>
-      <li>用户列表2</li>
-      <li>用户列表3</li>
-      <li>用户列表4</li>
-      <li>用户列表5</li>
-    </ul>
+    <GCForm v-bind="searchFormConfig" />
+    <div class="content"></div>
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import GCForm from '@/base-ui/form'
+import { searchFormConfig } from './config/search.config'
+</script>
 
 <style scoped></style>
