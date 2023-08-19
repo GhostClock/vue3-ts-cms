@@ -103,7 +103,7 @@ export function requestUserMenusByRoleId(roleId: number) {
           ]
         },
         {
-          id: 1,
+          id: 41,
           name: '系统管理',
           type: 1,
           url: '/main/system',
@@ -111,36 +111,36 @@ export function requestUserMenusByRoleId(roleId: number) {
           sort: 2,
           children: [
             {
-              id: 39,
+              id: 42,
               name: '用户管理',
-              parentId: 38,
+              parentId: 41,
               type: 2,
               sort: 2,
               url: '/main/system/user',
               children: null
             },
             {
-              id: 39,
+              id: 43,
               name: '部门管理',
-              parentId: 38,
+              parentId: 41,
               type: 2,
               sort: 2,
               url: '/main/system/department',
               children: null
             },
             {
-              id: 39,
+              id: 44,
               name: '菜单管理',
-              parentId: 38,
+              parentId: 41,
               type: 2,
               sort: 2,
               url: '/main/system/menu',
               children: null
             },
             {
-              id: 39,
+              id: 45,
               name: '角色管理',
-              parentId: 38,
+              parentId: 41,
               type: 2,
               sort: 2,
               url: '/main/system/role',
@@ -149,7 +149,7 @@ export function requestUserMenusByRoleId(roleId: number) {
           ]
         },
         {
-          id: 9,
+          id: 46,
           name: '商品中心',
           type: 1,
           url: '/main/product',
@@ -157,18 +157,18 @@ export function requestUserMenusByRoleId(roleId: number) {
           sort: 3,
           children: [
             {
-              id: 39,
+              id: 47,
               name: '商品类别',
-              parentId: 38,
+              parentId: 46,
               type: 2,
               sort: 2,
               url: '/main/product/category',
               children: null
             },
             {
-              id: 39,
+              id: 48,
               name: '商品信息',
-              parentId: 38,
+              parentId: 46,
               type: 2,
               sort: 2,
               url: '/main/product/goods',
@@ -177,7 +177,7 @@ export function requestUserMenusByRoleId(roleId: number) {
           ]
         },
         {
-          id: 41,
+          id: 49,
           name: '随便聊聊',
           type: 1,
           url: '/main/story',
@@ -185,18 +185,18 @@ export function requestUserMenusByRoleId(roleId: number) {
           sort: 4,
           children: [
             {
-              id: 39,
+              id: 50,
               name: '你的故事',
-              parentId: 38,
+              parentId: 49,
               type: 2,
               sort: 2,
               url: '/main/story/chat',
               children: null
             },
             {
-              id: 39,
+              id: 51,
               name: '故事列表',
-              parentId: 38,
+              parentId: 49,
               type: 2,
               sort: 2,
               url: '/main/story/list',

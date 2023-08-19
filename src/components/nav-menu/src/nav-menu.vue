@@ -5,19 +5,18 @@
       <span v-if="!collapse" class="title">Vue3+TS</span>
     </div>
     <el-menu
-      v-for="(menuItem, itemIndex) in loginStore.userMenus"
+      v-for="menuItem in loginStore.userMenus"
       :key="menuItem.id"
-      default-active="0"
+      :default-active="defaultValue"
+      :default-openeds="['38']"
       class="el-menu-vertical"
-      active-color="red"
       text-color="#b7bdc3"
       background-color="#0c2135"
       :collapse="collapse"
       :collapse-transition="true"
-      @open="handleOpen"
-      @close="handleClose"
+      :unique-opened="true"
     >
-      <el-sub-menu :index="`${itemIndex}`">
+      <el-sub-menu :index="`${menuItem.id}`">
         <template #title>
           <el-icon><Location /></el-icon>
           <span>{{ menuItem.name }}</span>
@@ -26,7 +25,7 @@
         <el-menu-item
           v-for="(sumItem, subItemIndex) in menuItem.children"
           :key="sumItem.id"
-          :index="`${menuItem.id}-${subItemIndex}`"
+          :index="`${sumItem.id}-${subItemIndex}`"
           @click="handleMenuItemClick(sumItem)"
         >
           <span>{{ sumItem.name }}</span>
@@ -37,26 +36,26 @@
 </template>
 
 <script setup lang="ts">
-import { toRefs } from 'vue'
-import { useRouter } from 'vue-router'
+import { toRefs, ref } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import { Location } from '@element-plus/icons-vue'
 import { useLoginStore } from '@/store/login/login'
 import { IUserMenus } from '@/service/login/types'
+import { pathMapToMenu } from '@/utils/map-menus'
 
 const props = defineProps({ collapse: Boolean })
 const loginStore = useLoginStore()
 const router = useRouter()
+const route = useRoute()
+const currentPath = route.path
 
 const { collapse } = toRefs(props)
 
-const handleOpen = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
-}
-const handleClose = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
-}
+const menu = pathMapToMenu(loginStore.userMenus, currentPath)
+const defaultValue = ref(`${menu.id}`)
+
 const handleMenuItemClick = (item: IUserMenus) => {
-  console.log(item.url)
+  console.log(item)
   router.push({
     path: item.url ?? '/not-found'
   })

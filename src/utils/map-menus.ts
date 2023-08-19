@@ -1,6 +1,8 @@
 import { RouteRecordRaw } from 'vue-router'
 import type { IUserMenus } from '@/service/login/types'
 
+// 保留第一个菜单
+let firstMenu: IUserMenus | null = null
 export function mapMenusToRoutes(userMenus: IUserMenus[]): RouteRecordRaw[] {
   const routers: RouteRecordRaw[] = []
   // 1、先加载所有的routers
@@ -20,6 +22,9 @@ export function mapMenusToRoutes(userMenus: IUserMenus[]): RouteRecordRaw[] {
         // 当前路由的path和菜单的url相等时表示找到了
         const route = allRouters.find((route) => route.path === menu.url)
         if (route) routers.push(route)
+        if (!firstMenu) {
+          firstMenu = menu
+        }
       } else {
         // 递归查找
         _recurseGetRoute(menu.children)
@@ -30,3 +35,23 @@ export function mapMenusToRoutes(userMenus: IUserMenus[]): RouteRecordRaw[] {
 
   return routers
 }
+
+export function pathMapToMenu(
+  userMenus: IUserMenus[],
+  currentPath: string
+): any {
+  for (const menu of userMenus) {
+    if (menu.type === 1) {
+      const findMenu = pathMapToMenu(menu.children ?? [], currentPath)
+      if (findMenu) {
+        return findMenu
+      }
+    } else if (menu.type === 2 && menu.url === currentPath) {
+      // 找到匹配的菜单
+      return menu
+    }
+  }
+  return null
+}
+
+export { firstMenu }
