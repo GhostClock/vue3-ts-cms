@@ -1,5 +1,6 @@
 import { RouteRecordRaw } from 'vue-router'
 import type { IUserMenus } from '@/service/login/types'
+import { IBreadcrumb } from '@/base-ui/breadcrumb'
 
 // 保留第一个菜单
 let firstMenu: IUserMenus | null = null
@@ -36,14 +37,28 @@ export function mapMenusToRoutes(userMenus: IUserMenus[]): RouteRecordRaw[] {
   return routers
 }
 
-export function pathMapToMenu(
+// 路由路径映射面包屑
+export function pathMapToBreadcrumb(
   userMenus: IUserMenus[],
   currentPath: string
+): IBreadcrumb[] {
+  const breadcrumbs: IBreadcrumb[] = []
+  pathMapToMenu(userMenus, currentPath, breadcrumbs)
+  return breadcrumbs
+}
+
+// 路由路径映射菜单
+export function pathMapToMenu(
+  userMenus: IUserMenus[],
+  currentPath: string,
+  breadcrumb?: IBreadcrumb[]
 ): any {
   for (const menu of userMenus) {
     if (menu.type === 1) {
       const findMenu = pathMapToMenu(menu.children ?? [], currentPath)
       if (findMenu) {
+        breadcrumb?.push({ name: menu.name, path: menu.url })
+        breadcrumb?.push({ name: findMenu.name, path: findMenu.url })
         return findMenu
       }
     } else if (menu.type === 2 && menu.url === currentPath) {

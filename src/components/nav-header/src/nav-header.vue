@@ -9,16 +9,28 @@
       </template>
     </el-icon>
     <div class="content">
-      <div>面包屑</div>
+      <CGBreadcrumb :breadcrumbs="breadcrumbs" />
       <user-info></user-info>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { Expand, Fold } from '@element-plus/icons-vue'
+import { useRoute } from 'vue-router'
+import { useLoginStore } from '@/store/login/login'
+import CGBreadcrumb from '@/base-ui/breadcrumb'
+import { pathMapToBreadcrumb } from '@/utils/map-menus'
+
 const emit = defineEmits(['foldChange'])
+
+// 面包屑数据 [{name, path}
+const breadcrumbs = computed(() => {
+  const route = useRoute()
+  const loginStore = useLoginStore()
+  return pathMapToBreadcrumb(loginStore.userMenus, route.path)
+})
 
 const isFold = ref(false)
 const expandAction = () => {
