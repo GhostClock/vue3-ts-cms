@@ -27,7 +27,9 @@
           v-for="(sumItem, subItemIndex) in menuItem.children"
           :key="sumItem.id"
           :index="`${menuItem.id}-${subItemIndex}`"
-          >{{ sumItem.name }}
+          @click="handleMenuItemClick(sumItem)"
+        >
+          <span>{{ sumItem.name }}</span>
         </el-menu-item>
       </el-sub-menu>
     </el-menu>
@@ -36,11 +38,14 @@
 
 <script setup lang="ts">
 import { toRefs } from 'vue'
+import { useRouter } from 'vue-router'
 import { Location } from '@element-plus/icons-vue'
 import { useLoginStore } from '@/store/login/login'
+import { IUserMenus } from '@/service/login/types'
 
 const props = defineProps({ collapse: Boolean })
 const loginStore = useLoginStore()
+const router = useRouter()
 
 const { collapse } = toRefs(props)
 
@@ -49,6 +54,12 @@ const handleOpen = (key: string, keyPath: string[]) => {
 }
 const handleClose = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
+}
+const handleMenuItemClick = (item: IUserMenus) => {
+  console.log(item.url)
+  router.push({
+    path: item.url ?? '/not-found'
+  })
 }
 </script>
 

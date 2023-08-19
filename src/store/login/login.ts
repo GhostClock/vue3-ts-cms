@@ -7,6 +7,7 @@ import {
 } from '@/service/login/login'
 import localCache from '@/utils/cache'
 import router from '@/router'
+import { mapMenusToRoutes } from '@/utils/map-menus'
 
 import { IAccount } from '@/service/login/types'
 import type { IUserInfoResult, IUserMenus } from '@/service/login/types'
@@ -44,6 +45,9 @@ export const useLoginStore = defineStore('login', {
 
       // 4、跳转到首页
       router.push('/main')
+
+      // 5、登录完毕后初始化菜单
+      this.initialMenus(userMenus)
     },
     // 登录成功后初始化store里面的登录信息
     loadLocalLoginInfo() {
@@ -61,7 +65,21 @@ export const useLoginStore = defineStore('login', {
       if (userMenus) {
         this.userMenus = userMenus
       }
+      if (!userMenus) return
+      // 已经完成登录后，初始化菜单
+      this.initialMenus(userMenus)
     },
+
+    // 初始化菜单
+    initialMenus(userMenus: IUserMenus[]) {
+      // useMenus映射到router
+      const routes = mapMenusToRoutes(userMenus)
+      // 将router添加到router.main.children
+      routes.forEach((route) => {
+        router.addRoute('main', route)
+      })
+    },
+
     phoneLoginAction(payload: object) {
       console.log('执行phoneLoginAction', payload)
     }

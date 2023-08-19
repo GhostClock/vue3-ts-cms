@@ -8,8 +8,11 @@ import {
 } from './types'
 
 enum LoginAPI {
+  // 登录
   AccountLogin = '/post',
+  // 用户信息
   UserInfo = '/post',
+  // 菜单信息
   UserMenus = '/post'
 }
 
@@ -87,6 +90,15 @@ export function requestUserMenusByRoleId(roleId: number) {
               sort: 2,
               url: '/main/analysis/overview',
               children: null
+            },
+            {
+              id: 40,
+              name: '仪表盘',
+              parentId: 38,
+              type: 2,
+              sort: 3,
+              url: '/main/analysis/dashboard',
+              children: null
             }
           ]
         },
@@ -104,7 +116,7 @@ export function requestUserMenusByRoleId(roleId: number) {
               parentId: 38,
               type: 2,
               sort: 2,
-              url: '/main/analysis/overview',
+              url: '/main/system/user',
               children: null
             },
             {
@@ -113,7 +125,7 @@ export function requestUserMenusByRoleId(roleId: number) {
               parentId: 38,
               type: 2,
               sort: 2,
-              url: '/main/analysis/overview',
+              url: '/main/system/department',
               children: null
             },
             {
@@ -122,7 +134,7 @@ export function requestUserMenusByRoleId(roleId: number) {
               parentId: 38,
               type: 2,
               sort: 2,
-              url: '/main/analysis/overview',
+              url: '/main/system/menu',
               children: null
             },
             {
@@ -131,7 +143,7 @@ export function requestUserMenusByRoleId(roleId: number) {
               parentId: 38,
               type: 2,
               sort: 2,
-              url: '/main/analysis/overview',
+              url: '/main/system/role',
               children: null
             }
           ]
@@ -150,7 +162,7 @@ export function requestUserMenusByRoleId(roleId: number) {
               parentId: 38,
               type: 2,
               sort: 2,
-              url: '/main/analysis/overview',
+              url: '/main/product/category',
               children: null
             },
             {
@@ -159,7 +171,7 @@ export function requestUserMenusByRoleId(roleId: number) {
               parentId: 38,
               type: 2,
               sort: 2,
-              url: '/main/analysis/overview',
+              url: '/main/product/goods',
               children: null
             }
           ]
@@ -178,7 +190,7 @@ export function requestUserMenusByRoleId(roleId: number) {
               parentId: 38,
               type: 2,
               sort: 2,
-              url: '/main/analysis/overview',
+              url: '/main/story/chat',
               children: null
             },
             {
@@ -187,7 +199,7 @@ export function requestUserMenusByRoleId(roleId: number) {
               parentId: 38,
               type: 2,
               sort: 2,
-              url: '/main/analysis/overview',
+              url: '/main/story/list',
               children: null
             }
           ]
