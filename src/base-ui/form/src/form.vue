@@ -1,5 +1,8 @@
 <template>
   <div class="gc-form">
+    <div class="header">
+      <slot name="header"> </slot>
+    </div>
     <el-form :label-width="props.labelWidth">
       <el-row>
         <template v-for="item in props.formItems" :key="item.label">
@@ -52,6 +55,9 @@
         </template>
       </el-row>
     </el-form>
+    <div class="footer">
+      <slot name="footer"> </slot>
+    </div>
   </div>
 </template>
 
