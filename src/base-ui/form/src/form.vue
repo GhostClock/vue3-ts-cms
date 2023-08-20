@@ -13,6 +13,7 @@
                 <el-input
                   v-bind="item.otherOptions"
                   :placeholder="item.placeholder"
+                  v-model="formData[`${item.field}`]"
                 ></el-input>
               </template>
               <template v-else-if="item.type === IFormType.password">
@@ -20,6 +21,7 @@
                   v-bind="item.otherOptions"
                   :placeholder="item.placeholder"
                   show-password
+                  v-model="formData[`${item.field}`]"
                 ></el-input>
               </template>
               <template v-else-if="item.type === IFormType.select">
@@ -27,6 +29,7 @@
                   :placeholder="item.placeholder"
                   v-bind="item.otherOptions"
                   style="width: 100%"
+                  v-model="formData[`${item.field}`]"
                 >
                   <el-option
                     v-for="selectOption in item.selectOptions"
@@ -37,7 +40,11 @@
                 </el-select>
               </template>
               <template v-else-if="item.type === IFormType.datepicker">
-                <el-date-picker style="width: 100%" v-bind="item.otherOptions">
+                <el-date-picker
+                  style="width: 100%"
+                  v-bind="item.otherOptions"
+                  v-model="formData[`${item.field}`]"
+                >
                 </el-date-picker>
               </template>
             </el-form-item>
@@ -49,9 +56,14 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from 'vue'
+import { PropType, ref, watch } from 'vue'
 import { IFormItem, IFormType } from '../types'
+
 const props = defineProps({
+  modelValue: {
+    type: Object,
+    required: true
+  },
   formItems: {
     type: Array as PropType<IFormItem[]>,
     default: () => []
@@ -79,6 +91,12 @@ const props = defineProps({
       xs: 24
     })
   }
+})
+const formData = ref({ ...props.modelValue })
+
+const emit = defineEmits(['update:modelValue'])
+watch(formData, (newValue) => emit('update:modelValue', newValue), {
+  deep: true
 })
 </script>
 
