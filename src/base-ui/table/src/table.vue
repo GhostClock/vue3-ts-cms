@@ -3,12 +3,11 @@
     <el-table :data="listData" border style="width: 100%">
       <template v-for="propItem in propList" :key="propItem.prop">
         <el-table-column v-bind="propItem" align="center">
-          <templete #default="scope">
-            <!-- TODO: 这里的scope取值有问题 -->
-            <slot :name="propItem.slotName" :row="scope.row">
-              {{ scope.row[propItem.prop] }}
+          <template #default="{ row }">
+            <slot :name="propItem.slotName" :row="row">
+              {{ row[propItem.prop] }}
             </slot>
-          </templete>
+          </template>
         </el-table-column>
       </template>
     </el-table>
@@ -16,14 +15,15 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, PropType } from 'vue'
+import { ITablePropType } from '../types'
 const props = defineProps({
   listData: {
     type: Array,
     required: true
   },
   propList: {
-    type: Array,
+    type: Array as PropType<ITablePropType[]>,
     required: true
   }
 })

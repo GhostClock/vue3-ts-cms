@@ -3,14 +3,14 @@
     <PageSearch :searchFormConfig="searchFormConfig" />
     <div class="content">
       <GCTable :listData="userList" :propList="propList">
-        <template #status="scope">
-          <el-button>{{ scope.row.enable ? '启用' : '禁用' }}}</el-button>
+        <template #status="{ row }">
+          <el-button>{{ row.enable ? '启用' : '禁用' }}</el-button>
         </template>
-        <template #createAt="scope">
-          <strong>{{ scope.row.createAt }}</strong>
+        <template #createAt="{ row }">
+          <strong>{{ row.createAt }}</strong>
         </template>
-        <template #updateAt="scope">
-          <strong>{{ scope.row.updateAt }}</strong>
+        <template #updateAt="{ row }">
+          <strong>{{ row.updateAt }}</strong>
         </template>
       </GCTable>
     </div>
@@ -23,6 +23,7 @@ import PageSearch from '@/components/page-search'
 import { searchFormConfig } from './config/search.config'
 import { useSystemStore } from '@/store/main/system/system'
 import { SystemPageListUrl } from '@/service/main/systemUrls'
+import type { ITablePropType } from '@/base-ui/table'
 import GCTable from '@/base-ui/table'
 
 const systemStore = useSystemStore()
@@ -38,7 +39,7 @@ systemStore.getPageListAction({
 const userList = computed(() => systemStore.userList)
 const userCount = computed(() => systemStore.userCount)
 
-const propList = [
+const propList: ITablePropType[] = [
   {
     prop: 'name',
     label: '用户名',
