@@ -4,13 +4,17 @@
     <div class="content">
       <GCTable :listData="userList" :propList="propList">
         <template #status="{ row }">
-          <el-button>{{ row.enable ? '启用' : '禁用' }}</el-button>
+          <el-button
+            :type="row.enable ? 'primary' : 'danger'"
+            @click="enableAction(row)"
+            >{{ row.enable ? '启用' : '禁用' }}</el-button
+          >
         </template>
         <template #createAt="{ row }">
-          <strong>{{ row.createAt }}</strong>
+          <strong>{{ formatUTCDate(row.createAt) }}</strong>
         </template>
         <template #updateAt="{ row }">
-          <strong>{{ row.updateAt }}</strong>
+          <strong>{{ formatUTCDate(row.updateAt) }}</strong>
         </template>
       </GCTable>
     </div>
@@ -22,9 +26,10 @@ import { computed } from 'vue'
 import PageSearch from '@/components/page-search'
 import { searchFormConfig } from './config/search.config'
 import { useSystemStore } from '@/store/main/system/system'
-import { SystemPageListUrl } from '@/service/main/systemUrls'
+import { SystemPageListUrl } from '@/service/urls'
 import type { ITablePropType } from '@/base-ui/table'
 import GCTable from '@/base-ui/table'
+import { formatUTCDate } from '@/utils/date'
 
 const systemStore = useSystemStore()
 // 获取用户列表数据
@@ -74,6 +79,9 @@ const propList: ITablePropType[] = [
     slotName: 'updateAt'
   }
 ]
+const enableAction = (row: any) => {
+  row.enable = !row.enable
+}
 </script>
 
 <style scoped>
