@@ -2,7 +2,13 @@
   <div class="user">
     <PageSearch :searchFormConfig="searchFormConfig" />
     <div class="content">
-      <GCTable :listData="userList" :propList="propList">
+      <GCTable
+        :listData="userList"
+        :propList="propList"
+        :showIndexColum="showIndexColum"
+        :showSelectColum="showSelectColum"
+        @selectionChange="selectionChange"
+      >
         <template #status="{ row }">
           <el-button
             plain
@@ -17,6 +23,12 @@
         <template #updateAt="{ row }">
           <span>{{ $filters.formatTime(row.updateAt) }}</span>
         </template>
+        <template #handler>
+          <div class="handler-btns">
+            <el-button size="mini" type="text" :icon="Edit">编辑</el-button>
+            <el-button size="mini" type="text" :icon="Delete">删除</el-button>
+          </div>
+        </template>
       </GCTable>
     </div>
   </div>
@@ -30,6 +42,7 @@ import { useSystemStore } from '@/store/main/system/system'
 import { SystemPageListUrl } from '@/service/urls'
 import type { ITablePropType } from '@/base-ui/table'
 import GCTable from '@/base-ui/table'
+import { Edit, Delete } from '@element-plus/icons-vue'
 
 const systemStore = useSystemStore()
 // 获取用户列表数据
@@ -69,18 +82,25 @@ const propList: ITablePropType[] = [
   {
     prop: 'createAt',
     label: '创建时间',
-    minWidth: '250',
+    minWidth: '200',
     slotName: 'createAt'
   },
   {
     prop: 'updateAt',
     label: '更新时间',
-    minWidth: '250',
+    minWidth: '200',
     slotName: 'updateAt'
-  }
+  },
+  { prop: 'handler', label: '操作', minWidth: '150', slotName: 'handler' }
 ]
 const enableAction = (row: any) => {
   row.enable = !row.enable
+}
+const showIndexColum = true
+const showSelectColum = true
+
+const selectionChange = (value: any) => {
+  console.log(value)
 }
 </script>
 
