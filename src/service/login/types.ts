@@ -4,15 +4,6 @@ export interface IAccount {
   password: string
 }
 
-// 返回的最外层数据类型
-export interface IDataType<T = any> {
-  // 模拟数据响应
-  json: {
-    code: number
-    data: T
-  }
-}
-
 // token信息数据
 export interface ILoginResult {
   id: number

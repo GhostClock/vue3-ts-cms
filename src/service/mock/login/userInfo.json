@@ -1,0 +1,22 @@
+{
+  "cellphone": "18812345678",
+  "createAt": "2023-08-01",
+  "department": {
+    "id": 1,
+    "name": "总裁办",
+    "parent": null,
+    "createAt": "2023-08-01",
+    "updateAt": "2023-08-01"
+  },
+  "enable": true,
+  "id": 1,
+  "realname": "GhostClock",
+  "role": {
+    "id": 1,
+    "name": "超级管理员",
+    "intor": "所有权限",
+    "createAt": "2023-08-01",
+    "updateAt": "2023-08-01"
+  },
+  "updateAt": "2023-08-01"
+}

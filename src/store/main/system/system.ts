@@ -14,7 +14,7 @@ export const useSystemStore = defineStore('system', {
     async getPageListAction(payload: any) {
       // 1、发起网络请求
       const result = await getPageListData(payload.pageUrl, payload.queryInfo)
-      const { list, totalCount } = result.json.data
+      const { list, totalCount } = result.data
       this.userList = list
       this.userCount = totalCount
     }

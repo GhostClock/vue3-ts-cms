@@ -24,7 +24,7 @@ export const useLoginStore = defineStore('login', {
     async accountLoginAction(payload: IAccount) {
       // 1、实现登录逻辑
       const loginResult = await accountLoginRequest(payload)
-      const { id, token } = loginResult.json.data
+      const { id, token } = loginResult.data
       if (token) {
         this.token = token
         localCache.setCache('token', token)
@@ -33,13 +33,13 @@ export const useLoginStore = defineStore('login', {
 
       // 2、请求用户信息
       const userInfoResult = await requestUserInfoById(id)
-      const userInfo = userInfoResult.json.data
+      const userInfo = userInfoResult.data
       this.userInfo = userInfo
       localCache.setCache('userInfo', userInfo)
 
       // 3、请求用户菜单
       const userMenusResult = await requestUserMenusByRoleId(userInfo.role.id)
-      const userMenus = userMenusResult.json.data
+      const userMenus = userMenusResult.data
       this.userMenus = userMenus
       localCache.setCache('userMenus', userMenus)
 

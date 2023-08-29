@@ -4,6 +4,9 @@ import 'element-plus/dist/index.css'
 import 'normalize.css'
 import '@/assets/css/index.less'
 
+// mock需要引入才能使用
+import '@/service/mock/mockServe'
+
 import { App } from 'vue'
 import { createPinia } from 'pinia'
 import router from '@/router'

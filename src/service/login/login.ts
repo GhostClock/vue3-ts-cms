@@ -1,55 +1,34 @@
 import Request from '../index'
-import { AccountData, UserInfoData, UserMenus } from '../mock/login'
-import {
-  IAccount,
-  IDataType,
-  ILoginResult,
-  IUserInfoResult,
-  IUserMenus
-} from './types'
-
-enum LoginAPI {
-  // 登录
-  AccountLogin = '/post',
-  // 用户信息
-  UserInfo = '/post',
-  // 菜单信息
-  UserMenus = '/post'
-}
+import { IDataBaseType } from '../types/base-types'
+import { IAccount, ILoginResult, IUserInfoResult, IUserMenus } from './types'
+import { LoginAPI } from '../urls'
 
 export function accountLoginRequest(account: IAccount) {
-  return Request.post<IDataType<ILoginResult>>({
+  return Request.post<IDataBaseType<ILoginResult>>({
     url: LoginAPI.AccountLogin,
-    // 模拟登录信息
     data: {
-      ...account,
-      code: 0,
-      data: { ...AccountData }
+      ...account
     }
   })
 }
 
 export function requestUserInfoById(id: number) {
-  return Request.post<IDataType<IUserInfoResult>>({
+  return Request.post<IDataBaseType<IUserInfoResult>>({
     url: LoginAPI.UserInfo,
     // 模拟登录信息
     data: {
-      id,
-      code: 0,
-      data: { ...UserInfoData }
+      id
     },
     showLoading: false
   })
 }
 
 export function requestUserMenusByRoleId(roleId: number) {
-  return Request.post<IDataType<[IUserMenus]>>({
+  return Request.post<IDataBaseType<[IUserMenus]>>({
     url: LoginAPI.UserMenus,
     // 模拟数据请求
     data: {
-      roleId,
-      code: 0,
-      data: UserMenus
+      roleId
     },
     showLoading: false
   })

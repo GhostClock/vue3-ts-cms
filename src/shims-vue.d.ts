@@ -5,5 +5,10 @@ declare module '*.vue' {
   const component: DefineComponent<{}, {}, any>
   export default component
 }
+// 处理json文件
+declare module "*.json" {
+  const content: any;
+  export default content;
+}
 
 declare let $store: any
