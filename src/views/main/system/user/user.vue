@@ -5,16 +5,17 @@
       <GCTable :listData="userList" :propList="propList">
         <template #status="{ row }">
           <el-button
-            :type="row.enable ? 'primary' : 'danger'"
+            plain
+            :type="row.enable ? 'success' : 'danger'"
             @click="enableAction(row)"
             >{{ row.enable ? '启用' : '禁用' }}</el-button
           >
         </template>
         <template #createAt="{ row }">
-          <strong>{{ formatUTCDate(row.createAt) }}</strong>
+          <span>{{ $filters.formatTime(row.createAt) }}</span>
         </template>
         <template #updateAt="{ row }">
-          <strong>{{ formatUTCDate(row.updateAt) }}</strong>
+          <span>{{ $filters.formatTime(row.updateAt) }}</span>
         </template>
       </GCTable>
     </div>
@@ -29,7 +30,6 @@ import { useSystemStore } from '@/store/main/system/system'
 import { SystemPageListUrl } from '@/service/urls'
 import type { ITablePropType } from '@/base-ui/table'
 import GCTable from '@/base-ui/table'
-import { formatUTCDate } from '@/utils/date'
 
 const systemStore = useSystemStore()
 // 获取用户列表数据
