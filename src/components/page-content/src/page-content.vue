@@ -45,7 +45,6 @@ import { computed, toRefs } from 'vue'
 import { Edit, Delete } from '@element-plus/icons-vue'
 
 import { useSystemStore } from '@/store/main/system/system'
-import { SystemPageListUrl } from '@/service/urls'
 
 import GCTable from '@/base-ui/table'
 
@@ -53,14 +52,18 @@ const props = defineProps({
   contentTableConfig: {
     type: Object,
     require: true
+  },
+  pageName: {
+    type: String,
+    require: true
   }
 })
-const { contentTableConfig } = toRefs(props)
+const { contentTableConfig, pageName } = toRefs(props)
 
 const systemStore = useSystemStore()
 // 获取用户列表数据
 systemStore.getPageListAction({
-  pageUrl: SystemPageListUrl.userList,
+  pageName: pageName?.value,
   queryInfo: {
     offset: 0,
     size: 10
