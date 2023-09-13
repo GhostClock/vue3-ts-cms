@@ -2,7 +2,7 @@
   <div class="page-content">
     <GCTable
       v-bind="contentTableConfig"
-      :listData="userList"
+      :listData="dataList"
       @selectionChange="selectionChange"
     >
       <!-- 1.header中的插槽 -->
@@ -43,9 +43,7 @@
 <script setup lang="ts">
 import { computed, toRefs } from 'vue'
 import { Edit, Delete } from '@element-plus/icons-vue'
-
 import { useSystemStore } from '@/store/main/system/system'
-
 import GCTable from '@/base-ui/table'
 
 const props = defineProps({
@@ -70,8 +68,10 @@ systemStore.getPageListAction({
   }
 })
 // 从仓库里面获取数据
-const userList = computed(() => systemStore.userList)
-const userCount = computed(() => systemStore.userCount)
+const dataList = computed(() =>
+  systemStore.pageListData(pageName?.value as string)
+)
+const listCount = computed(() => systemStore.userCount)
 
 const enableAction = (row: any) => {
   row.enable = !row.enable

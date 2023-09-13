@@ -6,8 +6,8 @@ import { SystemPageListUrl, PageNameType } from '@/service/urls'
 export const useSystemStore = defineStore('system', {
   state: (): ISystemState => {
     return {
-      userList: [],
-      userCount: 0,
+      usersList: [],
+      usersCount: 0,
       roleList: [],
       roleCount: 0
     }
@@ -17,24 +17,16 @@ export const useSystemStore = defineStore('system', {
     async getPageListAction(payload: any) {
       // 1、获取pageUrl
       const pageName: PageNameType = payload.pageName
-      let pageUrl: SystemPageListUrl = SystemPageListUrl.userList
-      switch (pageName) {
-        case PageNameType.users:
-          pageUrl = SystemPageListUrl.userList
-          break
-        case PageNameType.role:
-          pageUrl = SystemPageListUrl.roleList
-          break
-        default:
-          break
-      }
+      const pageUrl = `/${pageName}/list`
+
       // 2、发起网络请求
       const result = await getPageListData(pageUrl, payload.queryInfo)
       const { list, totalCount } = result.data
+
       switch (pageName) {
         case PageNameType.users:
-          this.userList = list
-          this.userCount = totalCount
+          this.usersList = list
+          this.usersCount = totalCount
           break
         case PageNameType.role:
           this.roleList = list
@@ -42,6 +34,13 @@ export const useSystemStore = defineStore('system', {
           break
         default:
           break
+      }
+    }
+  },
+  getters: {
+    pageListData(state) {
+      return (pageName: string) => {
+        return (state as any)[`${pageName}List`]
       }
     }
   }

@@ -11,8 +11,8 @@ export interface ISystemUserType {
 }
 
 export interface ISystemState {
-  userList: ISystemUserType[]
-  userCount: number
+  usersList: ISystemUserType[]
+  usersCount: number
   roleList: any[]
   roleCount: number
 }

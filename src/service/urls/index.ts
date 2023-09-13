@@ -8,7 +8,7 @@ export enum LoginAPI {
 }
 
 export enum PageNameType {
-  users = 'user',
+  users = 'users',
   role = 'role'
 }
 

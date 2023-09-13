@@ -7,6 +7,7 @@ import userMenus from './login/userMenus.json'
 
 // main
 import userList from './main/userList.json'
+import roleList from './main/roleList.json'
 
 // 登录数据
 Mock.mock('/mock/login', {
@@ -30,4 +31,10 @@ Mock.mock('/mock/usermenus', {
 Mock.mock('/mock/users/list', {
   code: 0,
   data: userList
+})
+
+// 角色列表
+Mock.mock('/mock/role/list', {
+  code: 0,
+  data: roleList
 })
