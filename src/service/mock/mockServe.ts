@@ -6,7 +6,8 @@ import userInfo from './login/userInfo.json'
 import userMenus from './login/userMenus.json'
 
 // main
-import userList from './main/userList.json'
+// import userList from './main/userList.json'
+import userList from './main/userList'
 import roleList from './main/roleList.json'
 
 // 登录数据
@@ -28,9 +29,11 @@ Mock.mock('/mock/usermenus', {
 })
 
 // 用户列表
-Mock.mock('/mock/users/list', {
-  code: 0,
-  data: userList
+Mock.mock('/mock/users/list', (params) => {
+  return {
+    code: 0,
+    data: userList(params)
+  }
 })
 
 // 角色列表
