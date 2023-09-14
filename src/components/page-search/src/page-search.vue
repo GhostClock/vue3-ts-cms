@@ -6,8 +6,8 @@
       </template>
       <template #footer>
         <div class="footer">
+          <el-button :icon="Refresh" @click="handleResetClick">重置</el-button>
           <el-button type="primary" :icon="Search">搜索</el-button>
-          <el-button :icon="Refresh">重置</el-button>
         </div>
       </template>
     </GCForm>
@@ -26,13 +26,26 @@ const props = defineProps({
   }
 })
 
-const formData = ref({
-  id: '',
-  name: '',
-  password: '',
-  sport: '',
-  createTime: ''
-})
+// 1、双向绑定的属性应该是由配置文件的field来决定的
+let fieldData: any = {}
+const getFromItems = () => {
+  const fromItems = props.searchFormConfig?.formItems ?? []
+  fromItems.forEach((item: any) => {
+    fieldData[item.field] = ''
+  })
+}
+getFromItems()
+const formData = ref(fieldData)
+// 2、点击重置后，清空formData里面的数据
+const handleResetClick = () => {
+  // 1、方案一：双向绑定
+  // for (const key in fieldData) {
+  //   formData.value[`${key}`] = fieldData[key]
+  // }
+
+  // 2、方案二：
+  formData.value = fieldData
+}
 </script>
 
 <style scoped>
@@ -43,6 +56,6 @@ const formData = ref({
 
 .footer {
   text-align: right;
-  padding: 0px 50px 20px 0;
+  padding: 0px 10px 20px 0;
 }
 </style>

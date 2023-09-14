@@ -13,26 +13,32 @@
               :style="props.itemStyle"
             >
               <template v-if="item.type === IFormType.input">
+                <!-- 方案一: v-model="formData[`${item.field}`]" -->
                 <el-input
                   v-bind="item.otherOptions"
                   :placeholder="item.placeholder"
-                  v-model="formData[`${item.field}`]"
+                  :model-Value="modelValue[`${item.field}`]"
+                  @update:modelValue="handleValueChange($event, item.field)"
                 ></el-input>
               </template>
               <template v-else-if="item.type === IFormType.password">
+                <!-- 方案一: v-model="formData[`${item.field}`]" -->
                 <el-input
                   v-bind="item.otherOptions"
                   :placeholder="item.placeholder"
                   show-password
-                  v-model="formData[`${item.field}`]"
+                  :model-Value="modelValue[`${item.field}`]"
+                  @update:modelValue="handleValueChange($event, item.field)"
                 ></el-input>
               </template>
               <template v-else-if="item.type === IFormType.select">
+                <!-- 方案一: v-model="formData[`${item.field}`]" -->
                 <el-select
                   :placeholder="item.placeholder"
                   v-bind="item.otherOptions"
                   style="width: 100%"
-                  v-model="formData[`${item.field}`]"
+                  :model-Value="modelValue[`${item.field}`]"
+                  @update:modelValue="handleValueChange($event, item.field)"
                 >
                   <el-option
                     v-for="selectOption in item.selectOptions"
@@ -43,10 +49,12 @@
                 </el-select>
               </template>
               <template v-else-if="item.type === IFormType.datepicker">
+                <!-- 方案一：v-model="formData[`${item.field}`]" -->
                 <el-date-picker
                   style="width: 100%"
                   v-bind="item.otherOptions"
-                  v-model="formData[`${item.field}`]"
+                  :model-Value="modelValue[`${item.field}`]"
+                  @update:modelValue="handleValueChange($event, item.field)"
                 >
                 </el-date-picker>
               </template>
@@ -98,12 +106,17 @@ const props = defineProps({
     })
   }
 })
-const formData = ref({ ...props.modelValue })
-
+// const formData = ref({ ...props.modelValue })
 const emit = defineEmits(['update:modelValue'])
-watch(formData, (newValue) => emit('update:modelValue', newValue), {
-  deep: true
-})
+// 1、方案一：双向绑定
+// watch(formData, (newValue) => emit('update:modelValue', newValue), {
+//   deep: true
+// })
+
+// 2、方案二：
+const handleValueChange = (value: any, field: string) => {
+  emit('update:modelValue', { ...props.modelValue, [field]: value })
+}
 </script>
 
 <style scoped lang="less">
