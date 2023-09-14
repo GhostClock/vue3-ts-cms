@@ -59,19 +59,28 @@ const props = defineProps({
 const { contentTableConfig, pageName } = toRefs(props)
 
 const systemStore = useSystemStore()
-// 获取用户列表数据
-systemStore.getPageListAction({
-  pageName: pageName?.value,
-  queryInfo: {
-    offset: 0,
-    size: 10
-  }
+
+// 获取列表数据
+const getPageData = (queryInfo: any = {}) => {
+  systemStore.getPageListAction({
+    pageName: pageName?.value,
+    queryInfo: {
+      offset: 0,
+      size: 10,
+      ...queryInfo
+    }
+  })
+}
+getPageData()
+defineExpose({
+  getPageData
 })
+
 // 从仓库里面获取数据
 const dataList = computed(() =>
   systemStore.pageListData(pageName?.value as string)
 )
-const listCount = computed(() => systemStore.userCount)
+const listCount = computed(() => systemStore.usersCount)
 
 const enableAction = (row: any) => {
   row.enable = !row.enable

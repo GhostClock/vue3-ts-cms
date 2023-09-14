@@ -20,10 +20,12 @@ function createData() {
 }
 
 export default function userList(params: any) {
-  const { offset, size } = JSON.parse(params.body)
+  const { offset, size, id, name, realname, cellphone, enable, createAt } =
+    JSON.parse(params.body)
   if (!totalDataList.length) {
     createData()
   }
+  // TODO 查询逻辑
   const newDataList = totalDataList.slice(offset * size, (offset + 1) * size)
   return {
     list: newDataList,

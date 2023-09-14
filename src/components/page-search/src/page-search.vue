@@ -7,7 +7,9 @@
       <template #footer>
         <div class="footer">
           <el-button :icon="Refresh" @click="handleResetClick">重置</el-button>
-          <el-button type="primary" :icon="Search">搜索</el-button>
+          <el-button type="primary" :icon="Search" @click="handleQuery"
+            >搜索</el-button
+          >
         </div>
       </template>
     </GCForm>
@@ -25,6 +27,7 @@ const props = defineProps({
     reuqired: true
   }
 })
+const emits = defineEmits(['resetBtnClick', 'queryBtnClick'])
 
 // 1、双向绑定的属性应该是由配置文件的field来决定的
 let fieldData: any = {}
@@ -45,6 +48,13 @@ const handleResetClick = () => {
 
   // 2、方案二：
   formData.value = fieldData
+
+  emits('resetBtnClick')
+}
+
+// 3、点击搜索
+const handleQuery = () => {
+  emits('queryBtnClick', formData.value)
 }
 </script>
 
