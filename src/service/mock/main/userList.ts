@@ -18,7 +18,7 @@ function createData() {
     totalDataList.push(template)
   }
 }
-const searchDataList: any[] = []
+let searchDataList: any[] = []
 export default function userList(params: any) {
   // 只实现根据id查找
   const { offset, size, id } = JSON.parse(params.body)
@@ -26,23 +26,24 @@ export default function userList(params: any) {
     createData()
   }
   const newDataList: any[] = []
-  if (offset === 0 && id) {
+  let count = 0
+  if (id) {
     // 1、传入了搜索内容
     const findDataList = findAction(id)
     searchDataList.push(...findDataList)
-    const tempDataList = searchDataList.slice(
-      offset * size,
-      (offset + 1) * size
-    )
+    const tempDataList = searchDataList.slice(offset, size)
     newDataList.push(...tempDataList)
+    count = searchDataList.length
   } else {
     // 2、没传入搜索内容 - 按照offset, size，返回数据
-    const tempDataList = totalDataList.slice(offset * size, (offset + 1) * size)
+    searchDataList = []
+    const tempDataList = totalDataList.slice(offset, size)
     newDataList.push(...tempDataList)
+    count = totalDataList.length
   }
   return {
     list: newDataList,
-    totalCount: newDataList.length
+    totalCount: count
   }
 }
 

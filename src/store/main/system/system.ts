@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ISystemState } from './types'
 import { getPageListData } from '@/service/main/system'
-import { SystemPageListUrl, PageNameType } from '@/service/urls'
+import { PageNameType } from '@/service/urls'
 
 export const useSystemStore = defineStore('system', {
   state: (): ISystemState => {
@@ -39,8 +39,13 @@ export const useSystemStore = defineStore('system', {
   },
   getters: {
     pageListData(state) {
-      return (pageName: string) => {
+      return (pageName?: string) => {
         return (state as any)[`${pageName}List`]
+      }
+    },
+    pageListCount(state) {
+      return (pageName?: string) => {
+        return (state as any)[`${pageName}Count`]
       }
     }
   }

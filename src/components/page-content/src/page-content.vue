@@ -1,8 +1,10 @@
 <template>
   <div class="page-content">
     <GCTable
-      v-bind="contentTableConfig"
+      v-bind="props.contentTableConfig"
+      :listCount="listCount"
       :listData="dataList"
+      v-model:page="pageInfo"
       @selectionChange="selectionChange"
     >
       <!-- 1.header中的插槽 -->
@@ -41,7 +43,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, toRefs } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { Edit, Delete } from '@element-plus/icons-vue'
 import { useSystemStore } from '@/store/main/system/system'
 import GCTable from '@/base-ui/table'
@@ -56,17 +58,23 @@ const props = defineProps({
     require: true
   }
 })
-const { contentTableConfig, pageName } = toRefs(props)
 
 const systemStore = useSystemStore()
 
+// 双向绑定pageInfo
+const pageInfo = ref({ currentPage: 0, pageSize: 10 })
+watch(pageInfo, () => {
+  getPageData()
+})
+
 // 获取列表数据
 const getPageData = (queryInfo: any = {}) => {
+  const offset = pageInfo.value.currentPage * pageInfo.value.pageSize
   systemStore.getPageListAction({
-    pageName: pageName?.value,
+    pageName: props.pageName,
     queryInfo: {
-      offset: 0,
-      size: 10,
+      offset,
+      size: offset + pageInfo.value.pageSize,
       ...queryInfo
     }
   })
@@ -77,10 +85,8 @@ defineExpose({
 })
 
 // 从仓库里面获取数据
-const dataList = computed(() =>
-  systemStore.pageListData(pageName?.value as string)
-)
-const listCount = computed(() => systemStore.usersCount)
+const dataList = computed(() => systemStore.pageListData(props.pageName))
+const listCount = computed(() => systemStore.pageListCount(props.pageName))
 
 const enableAction = (row: any) => {
   row.enable = !row.enable

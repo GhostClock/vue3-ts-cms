@@ -40,14 +40,12 @@
     <div class="footer">
       <slot name="footer">
         <el-pagination
-          v-model:current-page="currentPage4"
-          v-model:page-size="pageSize4"
-          :page-sizes="[100, 200, 300, 400]"
-          :small="small"
-          :disabled="disabled"
-          :background="background"
+          :current-page="page.currentPage"
+          :page-size="page.pageSize"
+          :page-sizes="[10, 20, 30]"
+          small="small"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="400"
+          :total="props.listCount"
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
         />
@@ -68,6 +66,17 @@ const props = defineProps({
     type: Array,
     required: true
   },
+  listCount: {
+    type: Number,
+    default: 0
+  },
+  page: {
+    type: Object,
+    default: () => ({
+      currentPage: 0,
+      pageSize: 10
+    })
+  },
   propList: {
     type: Array as PropType<ITablePropType[]>,
     required: true
@@ -83,12 +92,22 @@ const props = defineProps({
 })
 const listData = computed(() => props.listData)
 const propList = computed(() => props.propList)
+const page = computed(() => props.page)
 
-const emit = defineEmits(['selectionChange'])
+const emit = defineEmits(['selectionChange', 'update:page'])
 
 // 选中的回调
 const handleSelectionChange = (value: any) => {
   emit('selectionChange', value)
+}
+// 分页器
+// size改变
+const handleSizeChange = (pageSize: number) => {
+  emit('update:page', { ...props.page, pageSize })
+}
+// 当前页改变
+const handleCurrentChange = (currentPage: number) => {
+  emit('update:page', { ...props.page, currentPage })
 }
 </script>
 
