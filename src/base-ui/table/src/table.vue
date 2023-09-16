@@ -28,7 +28,7 @@
         width="70"
       ></el-table-column>
       <template v-for="propItem in propList" :key="propItem.prop">
-        <el-table-column v-bind="propItem" align="center">
+        <el-table-column v-bind="propItem" align="center" show-overflow-tooltip>
           <template #default="{ row }">
             <slot :name="propItem.slotName" :row="row">
               {{ row[propItem.prop] }}

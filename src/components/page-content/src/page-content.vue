@@ -11,7 +11,7 @@
       <template #header-handler>
         <el-button type="primary" @click="handlerNewUser">新建用户</el-button>
       </template>
-      <!-- 2.列表里面的插槽 -->
+      <!-- 2.列表里面的插槽 固定插槽 -->
       <template #status="{ row }">
         <el-button
           plain
@@ -38,6 +38,17 @@
           </el-button>
         </div>
       </template>
+
+      <!-- 3.动态插入剩余的插槽 -->
+      <template
+        v-for="item in otherProSlots"
+        :key="item.prop"
+        #[item.slotName]="scope"
+      >
+        <template v-if="item.slotName">
+          <slot :name="item.slotName" :row="scope.row"></slot>
+        </template>
+      </template>
     </GCTable>
   </div>
 </template>
@@ -61,13 +72,13 @@ const props = defineProps({
 
 const systemStore = useSystemStore()
 
-// 双向绑定pageInfo
+// 1.双向绑定pageInfo
 const pageInfo = ref({ currentPage: 0, pageSize: 10 })
 watch(pageInfo, () => {
   getPageData()
 })
 
-// 获取列表数据
+// 2.获取列表数据
 const getPageData = (queryInfo: any = {}) => {
   const offset = pageInfo.value.currentPage * pageInfo.value.pageSize
   systemStore.getPageListAction({
@@ -84,9 +95,22 @@ defineExpose({
   getPageData
 })
 
-// 从仓库里面获取数据
+// 3.从仓库里面获取数据
 const dataList = computed(() => systemStore.pageListData(props.pageName))
 const listCount = computed(() => systemStore.pageListCount(props.pageName))
+
+// 4.获取其他的动态插槽
+const otherProSlots = props.contentTableConfig?.propList.filter((item: any) => {
+  if (
+    item.slotName === 'status' ||
+    item.slotName === 'createAt' ||
+    item.slotName === 'updateAt' ||
+    item.slotName === 'handler'
+  ) {
+    return false
+  }
+  return true
+})
 
 const enableAction = (row: any) => {
   row.enable = !row.enable

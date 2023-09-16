@@ -9,12 +9,15 @@ export enum LoginAPI {
 
 export enum PageNameType {
   users = 'users',
-  role = 'role'
+  role = 'role',
+  goods = 'goods'
 }
 
-export enum SystemPageListUrl {
+export enum PageListUrl {
   // 用户列表
   userList = '/users/list',
   // 规则
-  roleList = '/role/list'
+  roleList = '/role/list',
+  // 商品列表
+  goodsList = '/goods/list'
 }
