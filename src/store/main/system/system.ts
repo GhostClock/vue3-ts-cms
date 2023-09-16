@@ -8,10 +8,15 @@ export const useSystemStore = defineStore('system', {
     return {
       usersList: [],
       usersCount: 0,
+
       roleList: [],
       roleCount: 0,
+
       goodsList: [],
-      goodsCount: 0
+      goodsCount: 0,
+
+      menuList: [],
+      menuCount: 0
     }
   },
   actions: {
@@ -37,6 +42,10 @@ export const useSystemStore = defineStore('system', {
         case PageNameType.goods:
           this.goodsList = list
           this.goodsCount = totalCount
+          break
+        case PageNameType.menu:
+          this.menuList = list
+          this.menuCount = totalCount
           break
         default:
           break

@@ -10,7 +10,8 @@ export enum LoginAPI {
 export enum PageNameType {
   users = 'users',
   role = 'role',
-  goods = 'goods'
+  goods = 'goods',
+  menu = 'menu'
 }
 
 export enum PageListUrl {

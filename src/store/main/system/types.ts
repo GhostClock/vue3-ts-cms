@@ -13,8 +13,13 @@ export interface ISystemUserType {
 export interface ISystemState {
   usersList: ISystemUserType[]
   usersCount: number
+
   roleList: any[]
   roleCount: number
+
   goodsList: any[]
   goodsCount: number
+
+  menuList: any[]
+  menuCount: number
 }

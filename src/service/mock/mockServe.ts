@@ -10,6 +10,7 @@ import userMenus from './login/userMenus.json'
 import userList from './main/userList'
 import roleList from './main/roleList.json'
 import goodsData from './main/goods'
+import menuList from './main/menuList.json'
 
 // 登录数据
 Mock.mock('/mock/login', {
@@ -48,5 +49,14 @@ Mock.mock('/mock/goods/list', (params) => {
   return {
     code: 0,
     data: goodsData(params)
+  }
+})
+
+// 菜单列表
+Mock.mock('/mock/menu/list', {
+  code: 0,
+  data: {
+    list: menuList,
+    totalCount: 4
   }
 })

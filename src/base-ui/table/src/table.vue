@@ -13,6 +13,7 @@
       border
       style="width: 100%"
       @selection-change="handleSelectionChange"
+      v-bind="childrenProps"
     >
       <el-table-column
         v-if="showSelectColum"
@@ -37,7 +38,7 @@
         </el-table-column>
       </template>
     </el-table>
-    <div class="footer">
+    <div class="footer" v-if="props.showFooter">
       <slot name="footer">
         <el-pagination
           :current-page="page.currentPage"
@@ -77,6 +78,10 @@ const props = defineProps({
       pageSize: 10
     })
   },
+  childrenProps: {
+    type: Object,
+    default: () => ({})
+  },
   propList: {
     type: Array as PropType<ITablePropType[]>,
     required: true
@@ -88,11 +93,16 @@ const props = defineProps({
   showSelectColum: {
     type: Boolean,
     default: false
+  },
+  showFooter: {
+    type: Boolean,
+    default: true
   }
 })
 const listData = computed(() => props.listData)
 const propList = computed(() => props.propList)
 const page = computed(() => props.page)
+const childrenProps = computed(() => props.childrenProps)
 
 const emit = defineEmits(['selectionChange', 'update:page'])
 
