@@ -69,4 +69,20 @@ export function pathMapToMenu(
   return null
 }
 
+export function mapMenusToPermission(userMenus: any[]): string[] {
+  const permission: string[] = []
+
+  const _recurseGetPermission = (menus: any[]) => {
+    for (const menu of menus) {
+      if (menu.type === 1 || menu.type === 2) {
+        _recurseGetPermission(menu.children ?? [])
+      } else if (menu.type === 3) {
+        permission.push(menu.permission)
+      }
+    }
+  }
+  _recurseGetPermission(userMenus)
+  return permission
+}
+
 export { firstMenu }

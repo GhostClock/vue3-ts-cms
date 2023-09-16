@@ -57,6 +57,7 @@
 import { computed, ref, watch } from 'vue'
 import { Edit, Delete } from '@element-plus/icons-vue'
 import { useSystemStore } from '@/store/main/system/system'
+import { usePermission } from '@/hooks/usePermission'
 import GCTable from '@/base-ui/table'
 
 const props = defineProps({
@@ -69,6 +70,13 @@ const props = defineProps({
     require: true
   }
 })
+
+// 0.获取操作权限
+const isCreate = usePermission(props.pageName ?? '', 'create')
+const isUpdate = usePermission(props.pageName ?? '', 'update')
+const isDelete = usePermission(props.pageName ?? '', 'delete')
+const isQuery = usePermission(props.pageName ?? '', 'query')
+// TODO 权限判断
 
 const systemStore = useSystemStore()
 

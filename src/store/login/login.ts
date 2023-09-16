@@ -7,7 +7,7 @@ import {
 } from '@/service/login/login'
 import localCache from '@/utils/cache'
 import router from '@/router'
-import { mapMenusToRoutes } from '@/utils/map-menus'
+import { mapMenusToRoutes, mapMenusToPermission } from '@/utils/map-menus'
 
 import { IAccount } from '@/service/login/types'
 import type { IUserInfoResult, IUserMenus } from '@/service/login/types'
@@ -17,7 +17,8 @@ export const useLoginStore = defineStore('login', {
     return {
       token: '',
       userInfo: <IUserInfoResult>{},
-      userMenus: [<IUserMenus>{}]
+      userMenus: [<IUserMenus>{}],
+      permissions: []
     }
   },
   actions: {
@@ -78,6 +79,11 @@ export const useLoginStore = defineStore('login', {
       routes.forEach((route) => {
         router.addRoute('main', route)
       })
+
+      // 获取用户按钮权限
+      const permission = mapMenusToPermission(userMenus)
+      // TODO 权限还有问题
+      this.permissions = permission
     },
 
     phoneLoginAction(payload: object) {
