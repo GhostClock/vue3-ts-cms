@@ -8,6 +8,7 @@ import userMenus from './login/userMenus.json'
 // main
 // import userList from './main/userList.json'
 import userList from './main/userList'
+import { deleteUser } from './main/userList'
 import roleList from './main/roleList.json'
 import goodsData from './main/goods'
 import menuList from './main/menuList.json'
@@ -58,5 +59,13 @@ Mock.mock('/mock/menu/list', {
   data: {
     list: menuList,
     totalCount: 4
+  }
+})
+
+// 删除用户
+Mock.mock('/mock/users', 'delete', (params) => {
+  return {
+    code: 0,
+    data: deleteUser(params)
   }
 })

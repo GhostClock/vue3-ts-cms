@@ -1,7 +1,8 @@
 import { defineStore } from 'pinia'
 import { ISystemState } from './types'
-import { getPageListData } from '@/service/main/system'
+import { getPageListData, deletePageData } from '@/service/main/system'
 import { PageNameType } from '@/service/urls'
+import { ElMessage } from 'element-plus'
 
 export const useSystemStore = defineStore('system', {
   state: (): ISystemState => {
@@ -50,6 +51,18 @@ export const useSystemStore = defineStore('system', {
         default:
           break
       }
+    },
+    // 更加id删除数据
+    async deletePageDataAction(payload: any) {
+      const { pageName, id } = payload
+      const pageUrl = `/${pageName}`
+      // 发起删除数据的请求
+      const result = await deletePageData(pageUrl, { id })
+      if (result.data) {
+        ElMessage({ message: '删除成功', type: 'success' })
+      }
+      // 重新发起请求
+      this.getPageListAction({ pageName, queryInfo: { offset: 0, size: 10 } })
     }
   },
   getters: {

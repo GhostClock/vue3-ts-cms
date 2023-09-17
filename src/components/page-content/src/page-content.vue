@@ -26,13 +26,13 @@
       <template #updateAt="{ row }">
         <span>{{ $filters.formatTime(row.updateAt) }}</span>
       </template>
-      <template #handler>
+      <template #handler="{ row }">
         <div class="handler-btns">
           <el-button primary>
             <el-icon><Edit /></el-icon>
             编辑
           </el-button>
-          <el-button primary>
+          <el-button primary @click="handleDeleteClick(row)">
             <el-icon><Delete /></el-icon>
             删除
           </el-button>
@@ -119,17 +119,24 @@ const otherProSlots = props.contentTableConfig?.propList.filter((item: any) => {
   }
   return true
 })
-
+// 点击禁用
 const enableAction = (row: any) => {
   row.enable = !row.enable
 }
-
+// 选择用户
 const selectionChange = (value: any) => {
   console.log(value)
 }
-
+// 新建用户
 const handlerNewUser = () => {
   console.log('新建用户')
+}
+// 删除用户
+const handleDeleteClick = (item: any) => {
+  systemStore.deletePageDataAction({
+    id: item.id,
+    pageName: props.pageName
+  })
 }
 </script>
 

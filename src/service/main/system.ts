@@ -10,3 +10,8 @@ export function getPageListData(url: string, queryInfo: any) {
     }
   })
 }
+
+// 删除用户 url: /user/id
+export function deletePageData(url: string, info: any) {
+  return Request.delete<IDataBaseType>({ url, data: { ...info } })
+}

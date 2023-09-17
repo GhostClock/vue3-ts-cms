@@ -46,7 +46,6 @@ export default function userList(params: any) {
     totalCount: count
   }
 }
-
 function findAction(id: number) {
   const result: any[] = []
   totalDataList.forEach((item) => {
@@ -55,4 +54,13 @@ function findAction(id: number) {
     }
   })
   return result
+}
+
+// 删除用户
+export function deleteUser(params: any) {
+  const { id } = JSON.parse(params.body)
+  // 删除元素
+  const index = totalDataList.findIndex((item) => item.id === id)
+  totalDataList.splice(index, 1)
+  return true
 }
