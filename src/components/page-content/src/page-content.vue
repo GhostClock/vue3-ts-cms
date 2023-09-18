@@ -28,7 +28,7 @@
       </template>
       <template #handler="{ row }">
         <div class="handler-btns">
-          <el-button primary>
+          <el-button primary @click="handlerEditUser(row)">
             <el-icon><Edit /></el-icon>
             编辑
           </el-button>
@@ -70,6 +70,7 @@ const props = defineProps({
     require: true
   }
 })
+const emits = defineEmits(['newUserClick', 'editUserClick'])
 
 // 0.获取操作权限
 const isCreate = usePermission(props.pageName ?? '', 'create')
@@ -129,7 +130,11 @@ const selectionChange = (value: any) => {
 }
 // 新建用户
 const handlerNewUser = () => {
-  console.log('新建用户')
+  emits('newUserClick')
+}
+// 编辑用户
+const handlerEditUser = (item: any) => {
+  emits('editUserClick', item)
 }
 // 删除用户
 const handleDeleteClick = (item: any) => {
