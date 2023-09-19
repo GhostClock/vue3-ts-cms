@@ -35,8 +35,26 @@ import { usePageSearch } from '@/hooks/usePageSearch'
 import { usePageModal } from '@/hooks/usePageModal'
 
 const [pageContentRef, handleResetClick, handleQueryClick] = usePageSearch()
-const [pageModalRef, handleNewUser, handleEditUser, defaultInfo] =
-  usePageModal()
+
+// pageModal相关逻辑
+const newUserCallBack = () => {
+  const passwordItem = modalConfig.formItems.find(
+    (item) => item.field === 'password'
+  )
+  // TODO 界面不更新
+  passwordItem!.isHidden = false
+}
+const editUserCallBack = () => {
+  const passwordItem = modalConfig.formItems.find(
+    (item) => item.field === 'password'
+  )
+  // TODO 界面不更新
+  passwordItem!.isHidden = true
+}
+const [pageModalRef, handleNewUser, handleEditUser, defaultInfo] = usePageModal(
+  newUserCallBack,
+  editUserCallBack
+)
 </script>
 
 <style scoped></style>

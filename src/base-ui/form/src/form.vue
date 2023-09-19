@@ -8,6 +8,7 @@
         <template v-for="item in props.formItems" :key="item.label">
           <el-col v-bind="props.colLayout">
             <el-form-item
+              v-if="!item.isHidden"
               :label="item.label"
               :rules="item.rules"
               :style="props.itemStyle"

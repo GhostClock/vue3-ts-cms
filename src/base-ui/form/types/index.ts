@@ -21,6 +21,7 @@ export interface IFormItem {
   selectOptions?: IFormSelectOption[]
   // 针对特殊的属性
   otherOptions?: any
+  isHidden?: boolean
 }
 
 export interface IForm {
