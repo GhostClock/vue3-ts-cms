@@ -12,6 +12,7 @@ import { deleteUser } from './main/userList'
 import roleList from './main/roleList.json'
 import goodsData from './main/goods'
 import menuList from './main/menuList.json'
+import departmentList from './main/departmentList.json'
 
 // 登录数据
 Mock.mock('/mock/login', {
@@ -51,6 +52,12 @@ Mock.mock('/mock/goods/list', (params) => {
     code: 0,
     data: goodsData(params)
   }
+})
+
+// 部门列表
+Mock.mock('/mock/department/list', {
+  code: 0,
+  data: departmentList
 })
 
 // 菜单列表

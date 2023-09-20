@@ -11,7 +11,7 @@ import { mapMenusToRoutes, mapMenusToPermission } from '@/utils/map-menus'
 
 import { IAccount } from '@/service/login/types'
 import type { IUserInfoResult, IUserMenus } from '@/service/login/types'
-
+import { useRootStore } from '../index'
 export const useLoginStore = defineStore('login', {
   state: (): ILoginState => {
     return {
@@ -97,4 +97,8 @@ export const useLoginStore = defineStore('login', {
 export function setupStore() {
   const loginStore = useLoginStore()
   loginStore.loadLocalLoginInfo()
+
+  // 获取部门、角色数据
+  const rootStore = useRootStore()
+  rootStore.getInitialDataAction()
 }

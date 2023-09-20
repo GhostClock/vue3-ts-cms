@@ -1,0 +1,53 @@
+{
+  "list": [
+    {
+      "id": 1,
+      "name": "营销部",
+      "person": "lily",
+      "parentDep": 1,
+      "createAt": "2022-02-01T18:00:13.000Z",
+      "updateAt": "2022-02-01T18:00:15.000Z"
+    },
+    {
+      "id": 2,
+      "name": "人事部",
+      "person": "lily",
+      "parentDep": 1,
+      "createAt": "2023-02-01T18:00:13.000Z",
+      "updateAt": "2020-02-01T18:00:15.000Z"
+    },
+    {
+      "id": 3,
+      "name": "客户部",
+      "person": "lily",
+      "parentDep": 2,
+      "createAt": "2022-03-01T18:00:13.000Z",
+      "updateAt": "2022-04-01T18:00:15.000Z"
+    },
+    {
+      "id": 4,
+      "name": "运营部",
+      "person": "lucy",
+      "parentDep": 1,
+      "createAt": "2022-10-01T18:00:13.000Z",
+      "updateAt": "2022-12-01T18:00:15.000Z"
+    },
+    {
+      "id": 2,
+      "name": "研发部",
+      "person": "李雷",
+      "parentDep": 1,
+      "createAt": "2022-01-01T18:00:13.000Z",
+      "updateAt": "2022-06-01T18:00:15.000Z"
+    },
+    {
+      "id": 6,
+      "name": "总裁办部",
+      "person": "GhostClock",
+      "parentDep": 1,
+      "createAt": "2022-01-01T18:00:13.000Z",
+      "updateAt": "2022-03-01T18:00:15.000Z"
+    }
+  ],
+  "totalCount": 6
+}
