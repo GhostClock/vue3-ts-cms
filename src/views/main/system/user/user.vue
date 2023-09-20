@@ -41,14 +41,12 @@ const newUserCallBack = () => {
   const passwordItem = modalConfig.formItems.find(
     (item) => item.field === 'password'
   )
-  // TODO 界面不更新
   passwordItem!.isHidden = false
 }
 const editUserCallBack = () => {
   const passwordItem = modalConfig.formItems.find(
     (item) => item.field === 'password'
   )
-  // TODO 界面不更新
   passwordItem!.isHidden = true
 }
 const [pageModalRef, handleNewUser, handleEditUser, defaultInfo] = usePageModal(

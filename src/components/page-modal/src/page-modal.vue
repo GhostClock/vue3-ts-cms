@@ -5,7 +5,7 @@
       title="新建用户"
       width="30%"
       center
-      destory-on-close
+      destroy-on-close
     >
       <GCForm v-bind="props.modalConfig" v-model="formData" />
       <template #footer>
