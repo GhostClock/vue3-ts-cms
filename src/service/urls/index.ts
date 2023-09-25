@@ -8,7 +8,7 @@ export enum LoginAPI {
 }
 
 export enum PageNameType {
-  users = 'users',
+  user = 'user',
   role = 'role',
   goods = 'goods',
   menu = 'menu',
@@ -17,7 +17,7 @@ export enum PageNameType {
 
 export enum PageListUrl {
   // 用户列表
-  userList = '/users/list',
+  userList = '/user/list',
   // 角色列表
   roleList = '/role/list',
   // 商品列表

@@ -8,12 +8,13 @@
     <PageContent
       ref="pageContentRef"
       :contentTableConfig="contentTableConfig"
-      :pageName="PageNameType.users"
+      :pageName="PageNameType.user"
       @newUserClick="_handleNewUser"
       @editUserClick="_handleEditUser"
     />
     <PageModal
       ref="pageModalRef"
+      :pageName="PageNameType.user"
       :defaultInfo="defaultInfo"
       :modalConfig="modalConfigRef"
     />

@@ -8,7 +8,7 @@ import userMenus from './login/userMenus.json'
 // main
 // import userList from './main/userList.json'
 import userList from './main/userList'
-import { deleteUser } from './main/userList'
+import { deleteUser, createUser, editUser } from './main/userList'
 import roleList from './main/roleList.json'
 import goodsData from './main/goods'
 import menuList from './main/menuList.json'
@@ -33,7 +33,7 @@ Mock.mock('/mock/usermenus', {
 })
 
 // 用户列表
-Mock.mock('/mock/users/list', (params) => {
+Mock.mock('/mock/user/list', (params) => {
   return {
     code: 0,
     data: userList(params)
@@ -70,9 +70,25 @@ Mock.mock('/mock/menu/list', {
 })
 
 // 删除用户
-Mock.mock('/mock/users', 'delete', (params) => {
+Mock.mock('/mock/user', 'delete', (params) => {
   return {
     code: 0,
     data: deleteUser(params)
+  }
+})
+
+// 创建用户
+Mock.mock('/mock/user', 'post', (params) => {
+  return {
+    code: 0,
+    data: createUser(params)
+  }
+})
+
+// 编辑用户
+Mock.mock('/mock/user', 'patch', (params) => {
+  return {
+    code: 0,
+    data: editUser(params)
   }
 })
