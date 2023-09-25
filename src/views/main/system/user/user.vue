@@ -2,15 +2,15 @@
   <div class="user">
     <PageSearch
       :searchFormConfig="searchFormConfig"
-      @resetBtnClick="handleResetClick"
-      @queryBtnClick="handleQueryClick"
+      @resetBtnClick="_handleResetClick"
+      @queryBtnClick="_handleQueryClick"
     />
     <PageContent
       ref="pageContentRef"
       :contentTableConfig="contentTableConfig"
       :pageName="PageNameType.users"
-      @newUserClick="handleNewUser"
-      @editUserClick="handleEditUser"
+      @newUserClick="_handleNewUser"
+      @editUserClick="_handleEditUser"
     />
     <PageModal
       ref="pageModalRef"
@@ -36,7 +36,11 @@ import { useRootStore } from '@/store'
 import { usePageSearch } from '@/hooks/usePageSearch'
 import { usePageModal } from '@/hooks/usePageModal'
 
+type tupeClickType = (...args: any[]) => void
+
 const [pageContentRef, handleResetClick, handleQueryClick] = usePageSearch()
+const _handleResetClick = handleResetClick as tupeClickType
+const _handleQueryClick = handleQueryClick as tupeClickType
 
 // pageModal相关逻辑
 // 1、处理密码的逻辑
@@ -78,6 +82,8 @@ const [pageModalRef, handleNewUser, handleEditUser, defaultInfo] = usePageModal(
   newUserCallBack,
   editUserCallBack
 )
+const _handleNewUser = handleNewUser as tupeClickType
+const _handleEditUser = handleEditUser as tupeClickType
 </script>
 
 <style scoped></style>
