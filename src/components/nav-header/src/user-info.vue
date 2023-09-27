@@ -7,7 +7,9 @@
       </span>
       <template #dropdown>
         <el-dropdown-menu>
-          <el-dropdown-item :icon="CloseBold">退出系统</el-dropdown-item>
+          <el-dropdown-item :icon="CloseBold" @click="handleExitClick"
+            >退出系统</el-dropdown-item
+          >
           <el-dropdown-item divided :icon="User">用户信息</el-dropdown-item>
           <el-dropdown-item :icon="Setting">系统管理</el-dropdown-item>
         </el-dropdown-menu>
@@ -18,8 +20,10 @@
 
 <script setup lang="ts">
 import { reactive, toRefs, computed } from 'vue'
+import { useRouter } from 'vue-router'
 import { CloseBold, User, Setting } from '@element-plus/icons-vue'
 import { useLoginStore } from '@/store/login/login'
+import localCache from '@/utils/cache'
 
 const store = useLoginStore()
 const name = computed(() => store.userInfo.realname)
@@ -29,6 +33,13 @@ const state = reactive({
     'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
 })
 const { circleUrl } = toRefs(state)
+
+const router = useRouter()
+// 退出登录
+const handleExitClick = () => {
+  localCache.deleteCache('token')
+  router.push('/main')
+}
 </script>
 
 <style scoped>

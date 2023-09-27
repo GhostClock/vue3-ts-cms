@@ -11,5 +11,5 @@ export function formatUTCDate(
   dateUTCStr: string,
   format: string = DATE_TIME_FORMAT
 ) {
-  return dayjs.utc(dateUTCStr).format(format)
+  return dayjs.utc(dateUTCStr).utcOffset(8).format(format)
 }

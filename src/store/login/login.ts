@@ -32,6 +32,10 @@ export const useLoginStore = defineStore('login', {
         console.log('登录成功')
       }
 
+      // 发送初始化请求 完整的角色，完整的部门
+      const rootStore = useRootStore()
+      rootStore.getInitialDataAction()
+
       // 2、请求用户信息
       const userInfoResult = await requestUserInfoById(id)
       const userInfo = userInfoResult.data
