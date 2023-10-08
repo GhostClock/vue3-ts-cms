@@ -23,5 +23,7 @@ export enum PageListUrl {
   // 商品列表
   goodsList = '/goods/list',
   // 部门列表
-  departmentList = 'department/list'
+  departmentList = 'department/list',
+  // 菜单列表
+  menuList = 'menu/list'
 }

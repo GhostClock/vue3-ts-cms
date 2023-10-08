@@ -7,7 +7,8 @@ export const useRootStore = defineStore('root', {
   state: (): IRootState => {
     return {
       entireDepartment: [],
-      entireRole: []
+      entireRole: [],
+      entireMenu: []
     }
   },
   actions: {
@@ -26,9 +27,14 @@ export const useRootStore = defineStore('root', {
         size: 1000
       })
       const { list: roleList } = roleResult.data
+
+      // 请求全部菜单
+      const menuResult = await getPageListData(PageListUrl.menuList, {})
+      const { list: menuList } = menuResult.data
       // 2、保存数据
       this.entireDepartment = departmentList
       this.entireRole = roleList
+      this.entireMenu = menuList
     }
   },
   getters: {}

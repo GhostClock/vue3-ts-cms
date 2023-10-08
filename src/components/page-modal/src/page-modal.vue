@@ -2,12 +2,13 @@
   <div class="page-modal">
     <el-dialog
       v-model="dialogVisible"
-      title="新建用户"
+      :title="'新建' + createTitle"
       width="30%"
       center
       destroy-on-close
     >
       <GCForm v-bind="props.modalConfig" v-model="formData" />
+      <slot></slot>
       <template #footer>
         <span class="dialog-footer">
           <el-button @click="dialogVisible = false">取消</el-button>
@@ -21,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 import { useSystemStore } from '@/store/main/system/system'
 import GCForm from '@/base-ui/form'
 const props = defineProps({
@@ -38,6 +39,7 @@ const props = defineProps({
     required: true
   }
 })
+const createTitle = computed(() => props.modalConfig.title)
 
 let dialogVisible = ref(false)
 const formData = ref<any>({})
