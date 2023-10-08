@@ -43,6 +43,7 @@ const propList: ITablePropType[] = [
 
 export const contentTableConfig = {
   title: '菜单列表',
+  createNewTitle: '菜单',
   showIndexColum: false,
   showSelectColum: false,
   showFooter: false,

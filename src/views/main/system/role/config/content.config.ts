@@ -28,6 +28,7 @@ const propList: ITablePropType[] = [
 
 export const contentTableConfig = {
   title: '角色列表',
+  createNewTitle: '角色',
   showIndexColum: true,
   showSelectColum: true,
   propList

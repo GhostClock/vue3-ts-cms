@@ -9,7 +9,9 @@
     >
       <!-- 1.header中的插槽 -->
       <template #header-handler>
-        <el-button type="primary" @click="handlerNewUser">新建用户</el-button>
+        <el-button type="primary" @click="handlerNewUser"
+          >新建{{ createNewTitle }}</el-button
+        >
       </template>
       <!-- 2.列表里面的插槽 固定插槽 -->
       <template #status="{ row }">
@@ -71,6 +73,7 @@ const props = defineProps({
   }
 })
 const emits = defineEmits(['newUserClick', 'editUserClick'])
+const createNewTitle = computed(() => props.contentTableConfig?.createNewTitle)
 
 // 0.获取操作权限
 const isCreate = usePermission(props.pageName ?? '', 'create')
