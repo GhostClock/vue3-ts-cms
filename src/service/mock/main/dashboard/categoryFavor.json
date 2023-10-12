@@ -1,0 +1,38 @@
+[
+  {
+    "id": 2,
+    "name": "上衣",
+    "goodFavor": 1000
+  },
+  {
+    "id": 3,
+    "name": "裤子",
+    "goodCount": 50000
+  },
+  {
+    "id": 4,
+    "name": "鞋子",
+    "goodCount": 56221
+  },
+  {
+    "id": 5,
+    "name": "厨具",
+    "goodCount": 325
+  },
+  {
+    "id": 6,
+    "name": "家具",
+    "goodCount": 6666
+  },
+  {
+    "id": 7,
+    "name": "床上用品",
+    "goodCount": 14894
+  },
+  {
+    "id": 8,
+    "name": "女装",
+    "goodCount": 9521
+  }
+]
+

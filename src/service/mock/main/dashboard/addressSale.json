@@ -1,0 +1,51 @@
+[
+  {
+    "address": "北京",
+    "count": 33222
+  },
+  {
+    "address": "天津",
+    "count": 33222
+  },
+  {
+    "address": "上海",
+    "count": 33222
+  },
+  {
+    "address": "杭州",
+    "count": 12363
+  },
+  {
+    "address": "台湾",
+    "count": 95965
+  },
+  {
+    "address": "宁波",
+    "count": 12121
+  },
+  {
+    "address": "乌鲁木齐",
+    "count": 51211
+  },
+  {
+    "address": "包头",
+    "count": 58552
+  },
+  {
+    "address": "武汉",
+    "count": 9999
+  },
+  {
+    "address": "厦门",
+    "count": 12324
+  },
+  {
+    "address": "深圳",
+    "count": 9879
+  },
+  {
+    "address": "广州",
+    "count": 846541
+  }
+]
+

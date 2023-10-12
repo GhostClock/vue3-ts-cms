@@ -25,5 +25,13 @@ export enum PageListUrl {
   // 部门列表
   departmentList = 'department/list',
   // 菜单列表
-  menuList = 'menu/list'
+  menuList = 'menu/list',
+  // 商品的城市销量
+  addresssSale = 'address/sale',
+  // 商品的数据
+  categoryCount = 'category/count',
+  // 商品的收藏
+  categoryFavor = 'category/favor',
+  // 商品的销量
+  categorySale = 'category/sale'
 }
